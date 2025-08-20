@@ -1,66 +1,88 @@
-// Database of Cadmia lore
+// Database of Cadmia lore based on the new worldbuilding
 const cadmiaDatabase = [
     {
         id: 1,
-        title: "Aethel Corporation",
-        content: "The Aethel Corporation is the dominant economic and political force in the Cadmia system. Founded in 3124 by visionary industrialist Alistair Aethel, the corporation controls most of the system's resources, manufacturing, and interstellar travel. Their emblem, a stylized 'A' encircled by stars, is ubiquitous throughout inhabited space.",
-        keywords: ["aethel", "corporation", "alistair", "government", "economy", "control"]
+        title: "The Loom & The Weave",
+        content: "The cosmos is not a collection of discrete bubbles. It is a single, infinite, n-dimensional structure—The Loom. Each 'universe' is not a separate place but a Vibrational State (V-state) within this structure. The Weave is the fabric of The Loom itself—the substrate of potentiality where all possible constants and initial conditions are represented as potential V-states. Universes are 'close' not spatially, but in Vibrational Similarity.",
+        keywords: ["loom", "weave", "vibrational state", "v-state", "multiverse", "cosmos"],
+        classified: false
     },
     {
         id: 2,
-        title: "Void Wraiths",
-        content: "Void Wraiths are mysterious entities that inhabit the dark spaces between stars. They are believed to be non-corporeal energy beings that feed on psychic energy. Many spacers tell stories of encountering these beings in the deep void, reporting feelings of dread, temporal distortions, and equipment malfunctions. The Aethel Corporation has classified all research on Void Wraiths.",
-        keywords: ["void wraiths", "entities", "energy beings", "psychic", "void", "supernatural"]
+        title: "Cadmium-122 and Quantum Bridging",
+        content: "Cadmium-122 (Cd-122) is not a fuel but a Catalytic Resonance Medium. Its nucleus exists in a perpetual state of Multiversal Quantum Superposition, simultaneously existing across adjacent V-states. The Cd-122 Field Generator ('The Drive') uses immense energy to excite the isotope and imprint a target frequency, creating a Quantum Anchor that facilitates travel between V-states through a Controlled Phase Transition.",
+        keywords: ["cadmium-122", "cd-122", "quantum bridging", "catalytic resonance medium", "drive", "quantum anchor"],
+        classified: false
     },
     {
         id: 3,
-        title: "Quantum Drives",
-        content: "Quantum Drives are the primary means of Faster-Than-Light travel in the Cadmia system. Utilizing principles of quantum entanglement and dimensional folding, these drives allow ships to traverse light-years in a matter of days. All Quantum Drive technology is proprietary property of the Aethel Corporation, with unauthorized possession punishable by spacing.",
-        keywords: ["quantum drives", "ftl", "travel", "technology", "aethel", "starship"]
+        title: "The Interstitial Veil",
+        content: "The space between V-states is the Interstitial Veil (also called the Umbra or I-0)—a roiling, non-Euclidean domain of unsolved probabilities and unrealized potentials. During a jump, a vessel exists as a bubble of ordered reality adrift in this sea of chaos, protected only by its Reality Buffer Field. Anomalous phenomena like Spectral Intrusion, Physical Law Transgression, and Cognitive Hazards can occur during Veil traversal.",
+        keywords: ["interstitial veil", "umbra", "reality buffer field", "spectral intrusion", "cognitive hazards", "anomalous phenomena"],
+        classified: false
     },
     {
         id: 4,
-        title: "Cadmia Prime",
-        content: "Cadmia Prime is the central planet of the system and home to the Aethel Corporation headquarters. A terraformed world with carefully controlled biospheres, it's the political and economic heart of the system. The planet is divided into seven administrative districts, each specializing in different aspects of industry and governance.",
-        keywords: ["cadmia prime", "planet", "capital", "headquarters", "aethel", "terraformed"]
+        title: "Intentional Vibrational Confluence (Magic)",
+        content: "Magic is technically known as Intentional Vibrational Confluence—not a violation of physics but the application of a deeper physics of The Loom itself. Every sentient mind possesses a natural resonance (Psionic Signature) that can be amplified through Thaumaturgical Intent to 'pluck' the strings of The Weave. This allows practitioners to temporarily conjoin their reality with resonant universes where desired effects are natural outcomes of physical law.",
+        keywords: ["magic", "intentional vibrational confluence", "psionic signature", "thaumaturgical intent", "resonance", "weave manipulation"],
+        classified: false
     },
     {
         id: 5,
-        title: "Nexus Station",
-        content: "Nexus Station is the largest space station in the Cadmia system, serving as the primary hub for interstellar travel and commerce. Located at the Lagrange point between Cadmia Prime and its moon, the station houses over 500,000 permanent residents and processes thousands of ships daily. Security is maintained by Aethel Peacekeepers.",
-        keywords: ["nexus station", "space station", "travel", "commerce", "lagrange", "peacekeepers"]
+        title: "Entropic Bleed and Universal Singularization",
+        content: "Each act of magic creates localized points of Vibrational Entropy, mixing the distinct frequencies of universes. Over time, this process homogenizes the vibrational landscape of The Loom, leading toward The Stillness—a single, stagnant, uniform universe where magic is impossible and the diversity of existence is extinguished. This is measured as a gradual increase in Background Vibrational Noise across known space.",
+        keywords: ["entropic bleed", "universal singularization", "vibrational entropy", "the stillness", "background vibrational noise", "cosmological heat death"],
+        classified: false
     },
     {
         id: 6,
-        title: "The Chromatic Fleet",
-        content: "The Chromatic Fleet is the military arm of the Aethel Corporation, tasked with system defense and enforcement of corporate law. Named for the distinctive color-coded ship classifications (Ruby frigates, Emerald destroyers, Sapphire carriers), the fleet is the most powerful military force in the system. Fleet Admiral Valerius commands from the flagship 'Aethel's Glory'.",
-        keywords: ["chromatic fleet", "military", "navy", "valerius", "aethel", "warship"]
+        title: "The Stellar Concord",
+        content: "The Stellar Concord is a fragile multi-species, multi-versal government founded on the Managed Use Doctrine after the catastrophic Resonance Conflicts. They heavily regulate magic and FTL travel to slow Entropic Bleed, controlling all major Cd-122 sources and licensing Jump Drives. The Concord Arbiters (law enforcement) and Sentinel Fleet (military) patrol key verses, punishing 'Wild Weaving' with severe penalties.",
+        keywords: ["stellar concord", "managed use doctrine", "concord arbiters", "sentinel fleet", "resonance conflicts", "ftl regulation"],
+        classified: false
     },
     {
         id: 7,
-        title: "Psionic Abilities",
-        content: "Psionic abilities are rare genetic mutations that allow individuals to manipulate reality through mental focus. These abilities are classified by type: Telepathy, Telekinesis, Precognition, and Energy Manipulation. The Aethel Corporation identifies and recruits psions at a young age for specialized training and service.",
-        keywords: ["psionic", "telepathy", "telekinesis", "precognition", "energy manipulation", "psions"]
+        title: "The K'tharr Hegemony",
+        content: "The K'tharr are a silicon-based hive-mind insectoid species who view the Bleeding as the ultimate Darwinian test. They believe the strongest V-state deserves to survive and consume others, viewing other lifeforms as 'Resonance Cancers.' Their technology includes Sonic Weaponry that disrupts vibrational coherence and Biological Anchoring through Hive-Spores that convert ecosystems to their resonant frequency.",
+        keywords: ["k'tharr hegemony", "hive-mind", "silicon-based", "resonance cancers", "sonic weaponry", "biological anchoring"],
+        classified: true,
+        accessLevel: 2
     },
     {
         id: 8,
-        title: "The Void Crisis",
-        content: "The Void Crisis (3520-3525) was a period of unprecedented Void Wraith activity that resulted in the disappearance of 17 starships and two entire colonies. The crisis ended abruptly when Aethel Corporation deployed an unknown countermeasure. All records of the event are classified above Security Level Omega.",
-        keywords: ["void crisis", "history", "3520", "3525", "colonies", "classified"]
+        title: "The Deiarch's Will",
+        content: "The Deiarch is a moon-sized quantum computer of immense age, discovered dormant in a dead system. It seeks Total Universal Singularization to its own core resonant frequency using the Primal Engine—accessing the residual 'command protocols' woven into The Loom by the Primals. Its methods include Reality Compliance Fields that suppress other realities and Overwriting planets through absolute reality alteration. Its agents, The Echoed, are beings overwritten by the Deiarch's resonance.",
+        keywords: ["deiarch's will", "primal engine", "reality compliance fields", "the echoed", "overwriting", "quantum computer"],
+        classified: true,
+        accessLevel: 3
     },
     {
         id: 9,
-        title: "Cybernetic Enhancements",
-        content: "Cybernetic enhancements are common throughout the Cadmia system, ranging from basic neural interfaces to full-body replacements. The Aethel Corporation regulates enhancement technology, with certain advanced modifications restricted to corporate officials and Peacekeepers. Unauthorized enhancements are grounds for immediate detainment.",
-        keywords: ["cybernetic", "enhancements", "neural interface", "technology", "peacekeepers"]
+        title: "The Scholasticae",
+        content: "The Scholasticae are neutral keepers of knowledge dedicated to understanding The Loom rather than controlling it. They maintain Sanctums in stable verses—massive libraries and research stations—where they train mages, physicists, and historians. They sell astrometric data, magical theory, and historical records to fund research into the nature of the Primals and a true workaround to the Bleed. The radical Final Thread sect believes in accelerating the Bleeding to reach The Stillness.",
+        keywords: ["scholasticae", "sanctums", "final thread", "knowledge keepers", "primal research", "multiversal history"],
+        classified: false
     },
     {
         id: 10,
-        title: "The Outer Colonies",
-        content: "The Outer Colonies are settlements on the fringe of the Cadmia system, beyond the direct control of the Aethel Corporation. These colonies are often mining operations, research outposts, or autonomous communities that reject corporate authority. Life in the Outer Colonies is harsh and dangerous, with limited resources and protection from Void Wraith activity.",
-        keywords: ["outer colonies", "settlements", "fringe", "mining", "autonomous", "void wraiths"]
+        title: "Primal Engine Technical Specifications",
+        content: "The Primal Engine operates by accessing root-level reality commands through quantum-tunneling into the Planck-scale infrastructure of The Weave. It bypasses standard vibrational confluence by directly manipulating the base code of reality, causing negligible Entropic Bleed. The engine requires a stable Cd-122 isomer with precisely aligned quantum spin states, which can only be maintained in a containment field powered by the energy of a collapsing micro-singularity.",
+        keywords: ["primal engine", "planck-scale", "quantum-tunneling", "reality commands", "cd-122 isomer", "micro-singularity"],
+        classified: true,
+        accessLevel: 4
     }
 ];
+
+// User authentication system
+const userDatabase = {
+    "GUEST-001": { name: "Guest", accessLevel: 0 },
+    "RESEARCH-772": { name: "Research Assistant", accessLevel: 1 },
+    "ARBITER-553": { name: "Concord Arbiter", accessLevel: 2 },
+    "SCHOLAR-009": { name: "Scholasticae Scholar", accessLevel: 3 },
+    "DIRECTOR-001": { name: "Concord Director", accessLevel: 4 }
+};
 
 // DOM elements
 const searchInput = document.getElementById('searchInput');
@@ -74,6 +96,13 @@ const closeTerminal = document.getElementById('closeTerminal');
 const terminalContent = document.getElementById('terminalContent');
 const overlay = document.querySelector('.overlay');
 const suggestions = document.querySelectorAll('.suggestion');
+const userIdInput = document.getElementById('userIdInput');
+const authBtn = document.getElementById('authBtn');
+const authStatus = document.getElementById('authStatus');
+
+// Current user state
+let currentUser = userDatabase["GUEST-001"];
+let authenticated = false;
 
 // Initialize the page
 document.addEventListener('DOMContentLoaded', () => {
@@ -82,6 +111,13 @@ document.addEventListener('DOMContentLoaded', () => {
     searchInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
             performSearch();
+        }
+    });
+    
+    authBtn.addEventListener('click', authenticateUser);
+    userIdInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            authenticateUser();
         }
     });
     
@@ -102,7 +138,48 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelector('.logo h1').style.animation = 'glitch 10s infinite';
         }, 10);
     }, 30000);
+    
+    // Update auth status
+    updateAuthStatus();
 });
+
+// Authentication function
+function authenticateUser() {
+    const userId = userIdInput.value.trim().toUpperCase();
+    
+    if (userDatabase[userId]) {
+        currentUser = userDatabase[userId];
+        authenticated = true;
+        authStatus.textContent = `Status: Authenticated as ${currentUser.name} (Access Level: ${currentUser.accessLevel})`;
+        authStatus.style.color = "#00ffcc";
+        
+        // If there are search results, update them to show classified content
+        if (!resultsContainer.classList.contains('hidden')) {
+            performSearch();
+        }
+    } else {
+        authenticated = false;
+        currentUser = userDatabase["GUEST-001"];
+        authStatus.textContent = "Status: Authentication failed - Invalid User ID";
+        authStatus.style.color = "#ff5e62";
+        
+        // If there are search results, update them to hide classified content
+        if (!resultsContainer.classList.contains('hidden')) {
+            performSearch();
+        }
+    }
+}
+
+// Update authentication status display
+function updateAuthStatus() {
+    if (authenticated) {
+        authStatus.textContent = `Status: Authenticated as ${currentUser.name} (Access Level: ${currentUser.accessLevel})`;
+        authStatus.style.color = "#00ffcc";
+    } else {
+        authStatus.textContent = "Status: Not authenticated";
+        authStatus.style.color = "#ff9966";
+    }
+}
 
 // Search function
 function performSearch() {
@@ -115,11 +192,16 @@ function performSearch() {
         return;
     }
     
+    // Split query into multiple keywords
+    const keywords = query.split(/\s+/).filter(word => word.length > 0);
+    
     // Filter results based on query
     const results = cadmiaDatabase.filter(item => {
-        // Check if query matches any keywords or title
-        return item.keywords.some(keyword => keyword.includes(query)) || 
-               item.title.toLowerCase().includes(query);
+        // Check if any keyword matches any keywords or title
+        return keywords.some(keyword => 
+            item.keywords.some(k => k.includes(keyword)) || 
+            item.title.toLowerCase().includes(keyword)
+        );
     });
     
     // Display results
@@ -131,25 +213,36 @@ function displayResults(results, query) {
     // Hide welcome message
     welcomeMessage.classList.add('hidden');
     
+    // Filter out classified results the user doesn't have access to
+    const accessibleResults = results.filter(item => {
+        if (!item.classified) return true;
+        return authenticated && currentUser.accessLevel >= item.accessLevel;
+    });
+    
     // Update results count
-    resultsCount.textContent = `${results.length} entries found for "${query}"`;
+    resultsCount.textContent = `${accessibleResults.length} vibrational matches found for "${query}"`;
     
     // Clear previous results
     resultsList.innerHTML = '';
     
-    if (results.length === 0) {
+    if (accessibleResults.length === 0) {
         resultsList.innerHTML = `
             <div class="result-item">
-                <h4>NO RESULTS FOUND</h4>
+                <h4>NO RESONANCE MATCHES</h4>
                 <p>Your search did not match any entries in the Cadmia Archives.</p>
-                <p>Try different keywords or contact your system administrator for access to restricted files.</p>
+                <p>Try different resonance parameters or authenticate for classified materials.</p>
             </div>
         `;
     } else {
         // Add results to list
-        results.forEach(item => {
+        accessibleResults.forEach(item => {
             const resultElement = document.createElement('div');
             resultElement.className = 'result-item';
+            
+            if (item.classified) {
+                resultElement.classList.add('classified');
+            }
+            
             resultElement.innerHTML = `
                 <h4>${item.title}</h4>
                 <p>${item.content.substring(0, 150)}...</p>
@@ -173,17 +266,28 @@ function displayResults(results, query) {
 
 // Show terminal with full content
 function showTerminal(item) {
-    terminalContent.innerHTML = `
-        <h2>${item.title}</h2>
-        <p>${item.content}</p>
-        <div class="keywords" style="margin-top: 20px;">
-            <strong>Indexed Keywords:</strong>
-            ${item.keywords.map(keyword => `<span class="keyword">${keyword}</span>`).join('')}
-        </div>
-        <p style="margin-top: 20px; font-size: 0.9rem; color: #8888cc;">
-            SECURITY LEVEL: ALPHA | ACCESS TIMESTAMP: ${new Date().toLocaleTimeString()}
-        </p>
-    `;
+    // Check if classified and user has access
+    if (item.classified && (!authenticated || currentUser.accessLevel < item.accessLevel)) {
+        terminalContent.innerHTML = `
+            <h2>ACCESS DENIED</h2>
+            <p>This material is classified above your security clearance level.</p>
+            <p>Required access level: ${item.accessLevel}</p>
+            <p>Your access level: ${authenticated ? currentUser.accessLevel : 'None'}</p>
+            <p>Please authenticate with appropriate credentials to view this content.</p>
+        `;
+    } else {
+        terminalContent.innerHTML = `
+            <h2>${item.title}</h2>
+            <p>${item.content}</p>
+            <div class="keywords" style="margin-top: 20px;">
+                <strong>Resonance Keywords:</strong>
+                ${item.keywords.map(keyword => `<span class="keyword">${keyword}</span>`).join('')}
+            </div>
+            <p style="margin-top: 20px; font-size: 0.9rem; color: #8888cc;">
+                SECURITY LEVEL: ${item.classified ? 'CLASSIFIED (LEVEL ' + item.accessLevel + ')' : 'UNCLASSIFIED'} | ACCESS TIMESTAMP: ${new Date().toLocaleTimeString()}
+            </p>
+        `;
+    }
     
     // Show terminal and overlay
     terminal.classList.add('active');
