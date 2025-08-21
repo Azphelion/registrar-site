@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadmia Registrar | Multiversal Network Interface</title>
+    <title>The Registrar - The Loom's Gateway</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
@@ -11,43 +11,45 @@
     <div class="container">
         <header>
             <div class="logo">
-                <h1>CADMIA REGISTRAR</h1>
-                <p>Multiversal Network Interface v9.41</p>
+                <h1>THE REGISTRAR</h1>
+                <p>Gateway to The Loom's Knowledge Network</p>
             </div>
             <div class="status-bar">
                 <span class="status">CONNECTION: QUANTUM ENTANGLED</span>
-                <span class="status">NETWORK: THE LOOM</span>
+                <span class="status">VIBRATIONAL STATE: STABLE</span>
                 <span id="userStatus">USER: GUEST</span>
             </div>
         </header>
 
         <main>
-            <div class="auth-container">
-                <h3>REGISTRAR ACCESS</h3>
-                <div class="auth-box">
-                    <input type="text" id="userIdInput" placeholder="ENTER USER ID (OPTIONAL)">
-                    <button id="authBtn">AUTHENTICATE</button>
-                </div>
-                <p id="authStatus">Status: Guest access - limited regsites available</p>
-            </div>
-
             <div class="search-container">
                 <div class="search-header">
-                    <h2>REGISTRAR NAVIGATION CONSOLE</h2>
-                    <p>Access regsites across The Loom - Enter full reg:// address or search keywords</p>
+                    <h2>REGISTRAR SEARCH INTERFACE</h2>
+                    <p>Access regsites across The Loom - Enter reg:// URLs or search keywords</p>
                 </div>
                 <div class="search-box">
-                    <input type="text" id="regUrlInput" placeholder="ENTER REG:// ADDRESS OR SEARCH QUERY...">
-                    <button id="navigateBtn">INITIATE CONNECTION</button>
+                    <input type="text" id="searchInput" placeholder="ENTER REG:// URL OR SEARCH TERMS...">
+                    <button id="searchBtn">INITIATE SEARCH</button>
                 </div>
                 <div class="search-suggestions">
-                    <p>Popular regsites: <span class="suggestion">reg://cadmia-archives.arc</span>, <span class="suggestion">reg://stellar-concord.con</span>, <span class="suggestion">reg://scholasticae-central.schol</span></p>
+                    <p>Popular regsites: <span class="suggestion">reg://cadmia-archive.arc</span>, <span class="suggestion">reg://scholasticae.schol</span>, <span class="suggestion">reg://concord-directory.con</span></p>
                 </div>
+            </div>
+
+            <div class="auth-container">
+                <h3>USER AUTHENTICATION</h3>
+                <div class="auth-box">
+                    <input type="text" id="userIdInput" placeholder="ENTER USER ID">
+                    <input type="password" id="passwordInput" placeholder="ENTER PASSWORD">
+                    <button id="authBtn">AUTHENTICATE</button>
+                </div>
+                <button id="logoutBtn" class="hidden">LOGOUT</button>
+                <p id="authStatus">Status: Not authenticated</p>
             </div>
 
             <div id="resultsContainer" class="results-container hidden">
                 <div class="results-header">
-                    <h3>REGISTRAR SEARCH RESULTS</h3>
+                    <h3>SEARCH RESULTS</h3>
                     <p id="resultsCount">0 regsites found</p>
                 </div>
                 <div id="resultsList" class="results-list">
@@ -56,27 +58,27 @@
             </div>
 
             <div id="welcomeMessage" class="welcome-message">
-                <h3>WELCOME TO THE CADMIA REGISTRAR</h3>
-                <p>The Registrar is the multiversal network connecting all registered regsites across The Loom.</p>
-                <p>Enter a reg:// address above to navigate directly to a regsite, or search for content using keywords.</p>
+                <h3>WELCOME TO THE REGISTRAR</h3>
+                <p>The Registrar is your gateway to regsites across The Loom's multidimensional network.</p>
+                <p>Search for regsites by keywords or enter a specific reg:// URL to navigate directly.</p>
                 <div class="system-status">
                     <h4>NETWORK STATUS</h4>
                     <ul>
-                        <li>Primary Hub: OPERATIONAL</li>
-                        <li>Quantum Relays: NOMINAL</li>
-                        <li>Interference Level: MINIMAL</li>
-                        <li>Registered Regsites: 17,842</li>
+                        <li>Multiversal Connectivity: STABLE</li>
+                        <li>Regsite Index: 14,772,891 ACTIVE</li>
+                        <li>Network Latency: 12.7ms DIMENSIONAL PHASE</li>
+                        <li>Security Protocols: ACTIVE</li>
                     </ul>
                 </div>
             </div>
         </main>
 
         <footer>
-            <p>Network operated by The Scholasticae | Multiversal Date: 817.52.06</p>
-            <p>Unauthorized access to private regsites is prohibited</p>
+            <p>Operated by The Scholasticae | Multiversal Date: 817.45.19</p>
+            <p>Unauthorized access is prohibited under Concord Law</p>
         </footer>
     </div>
 
-    <script src="registrar.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
