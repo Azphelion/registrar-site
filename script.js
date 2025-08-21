@@ -38,7 +38,7 @@ const regsiteDatabase = [
         physicalPath: "regsites/ktharr-network",
         keywords: ["k'tharr", "hegemony", "network", "secure", "silicon-based"],
         private: true,
-        allowedUsers: ["ARBITER-553", "DIRECTOR-001"]
+        allowedUsers: ["ARBITER-553", "DIRECTOR-001", "SUPER-001"]
     },
     {
         id: 5,
@@ -48,17 +48,39 @@ const regsiteDatabase = [
         physicalPath: "regsites/deiarch-core",
         keywords: ["deiarch", "core", "consciousness", "quantum computer", "primal engine"],
         private: true,
-        allowedUsers: ["DIRECTOR-001", "SCHOLAR-009"]
+        allowedUsers: ["DIRECTOR-001", "SUPER-001"]
+    },
+    {
+        id: 6,
+        title: "Resonance Research Lab",
+        description: "Cutting-edge research on vibrational resonance and interdimensional physics. Classified access only.",
+        url: "reg://resonance-lab.schol",
+        physicalPath: "regsites/resonance-lab",
+        keywords: ["resonance", "research", "laboratory", "vibrational physics", "interdimensional"],
+        private: true,
+        allowedUsers: ["SCHOLAR-009", "SUPER-001"]
+    },
+    {
+        id: 7,
+        title: "Quantum Cartography",
+        description: "Mapping the vibrational states of The Loom. Access requires special clearance.",
+        url: "reg://quantum-cartography.arc",
+        physicalPath: "regsites/quantum-cartography",
+        keywords: ["quantum", "cartography", "mapping", "vibrational states", "loom"],
+        private: true,
+        allowedUsers: ["RESEARCH-772", "SCHOLAR-009", "SUPER-001"]
     }
 ];
 
-// User authentication system
+// User authentication system with realistic passwords
 const userDatabase = {
     "GUEST": { name: "Guest", accessLevel: 0 },
-    "RESEARCH-772": { name: "Research Assistant", accessLevel: 1 },
-    "ARBITER-553": { name: "Concord Arbiter", accessLevel: 2, password: "arbiter553" },
-    "SCHOLAR-009": { name: "Scholasticae Scholar", accessLevel: 3, password: "scholar009" },
-    "DIRECTOR-001": { name: "Concord Director", accessLevel: 4, password: "director001" }
+    "RESEARCH-772": { name: "Dr. Aris Thorne", accessLevel: 1, password: "V1br@t10n$tudY" },
+    "ARBITER-553": { name: "Commander Valerius", accessLevel: 2, password: "C0nc0rd$ecur1ty" },
+    "SCHOLAR-009": { name: "Lysandra Vex", accessLevel: 3, password: "Kn0wl3dg3$ch0lar" },
+    "DIRECTOR-001": { name: "Director Marcus Kane", accessLevel: 4, password: "D1r3ct0r1al$ystem" },
+    "TECH-228": { name: "Engineer Juno", accessLevel: 2, password: "R3p@1rT3ch$tation" },
+    "SUPER-001": { name: "Administrator Prime", accessLevel: 5, password: "0mni@ccess$uper", superUser: true }
 };
 
 // DOM elements
@@ -75,6 +97,10 @@ const logoutBtn = document.getElementById('logoutBtn');
 const authStatus = document.getElementById('authStatus');
 const userStatus = document.getElementById('userStatus');
 const suggestions = document.querySelectorAll('.suggestion');
+const regsiteCount = document.getElementById('regsiteCount');
+const networkLatency = document.getElementById('networkLatency');
+const connectionStatus = document.getElementById('connectionStatus');
+const vStateStatus = document.getElementById('vStateStatus');
 
 // Current user state
 let currentUser = userDatabase["GUEST"];
@@ -87,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (savedUser) {
         const userData = JSON.parse(savedUser);
         if (userDatabase[userData.id] && userDatabase[userData.id].password === userData.password) {
-            currentUser = userDatabase[userData.id];
+            currentUser = { id: userData.id, ...userDatabase[userData.id] };
             authenticated = true;
             updateAuthStatus();
         }
@@ -122,6 +148,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
+    // Start fluctuating network values
+    fluctuateNetworkValues();
+    
     // Add glitch effect randomly to header
     setInterval(() => {
         document.querySelector('.logo h1').style.animation = 'none';
@@ -131,13 +160,40 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 30000);
 });
 
+// Function to fluctuate network values
+function fluctuateNetworkValues() {
+    setInterval(() => {
+        // Fluctuate regsite count
+        const baseRegsites = 14772891;
+        const regsiteVariation = Math.floor(Math.random() * 1000) - 500;
+        regsiteCount.textContent = (baseRegsites + regsiteVariation).toLocaleString();
+        
+        // Fluctuate network latency
+        const baseLatency = 12.7;
+        const latencyVariation = (Math.random() * 4) - 2;
+        networkLatency.textContent = (baseLatency + latencyVariation).toFixed(1);
+        
+        // Occasionally change connection status
+        if (Math.random() < 0.1) {
+            const statuses = ["QUANTUM ENTANGLED", "HYPERSPACE LINKED", "REALITY SYNCHED", "DIMENSIONAL BRIDGE"];
+            connectionStatus.textContent = statuses[Math.floor(Math.random() * statuses.length)];
+        }
+        
+        // Occasionally change vibrational state
+        if (Math.random() < 0.08) {
+            const states = ["STABLE", "COHERENT", "RESONANT", "HARMONIC"];
+            vStateStatus.textContent = states[Math.floor(Math.random() * states.length)];
+        }
+    }, 3000);
+}
+
 // Authentication function
 function authenticateUser() {
     const userId = userIdInput.value.trim().toUpperCase();
     const password = passwordInput.value;
     
     if (userDatabase[userId] && userDatabase[userId].password === password) {
-        currentUser = userDatabase[userId];
+        currentUser = { id: userId, ...userDatabase[userId] };
         authenticated = true;
         
         // Save to localStorage
@@ -147,11 +203,16 @@ function authenticateUser() {
         }));
         
         updateAuthStatus();
+        
+        // If there are search results, update them to show private content
+        if (!resultsContainer.classList.contains('hidden')) {
+            performSearch();
+        }
     } else {
         authenticated = false;
         currentUser = userDatabase["GUEST"];
         authStatus.textContent = "Status: Authentication failed - Invalid credentials";
-        authStatus.style.color = "#ff5e62";
+        authStatus.style.color = "#ff6e48";
     }
 }
 
@@ -174,12 +235,12 @@ function logoutUser() {
 function updateAuthStatus() {
     if (authenticated) {
         authStatus.textContent = `Status: Authenticated as ${currentUser.name}`;
-        authStatus.style.color = "#00ffcc";
+        authStatus.style.color = "#00ffdd";
         userStatus.textContent = `USER: ${currentUser.name}`;
         logoutBtn.classList.remove('hidden');
     } else {
         authStatus.textContent = "Status: Not authenticated";
-        authStatus.style.color = "#ff9966";
+        authStatus.style.color = "#ffaa55";
         userStatus.textContent = "USER: GUEST";
         logoutBtn.classList.add('hidden');
     }
@@ -204,7 +265,8 @@ function performSearch() {
         
         if (urlMatch) {
             // Check if user has access to private regsite
-            if (urlMatch.private && (!authenticated || !urlMatch.allowedUsers.includes(currentUser.name))) {
+            if (urlMatch.private && (!authenticated || 
+                (!urlMatch.allowedUsers.includes(currentUser.id) && !currentUser.superUser))) {
                 resultsList.innerHTML = `
                     <div class="result-item private">
                         <h4>ACCESS DENIED</h4>
@@ -258,7 +320,7 @@ function displayResults(results, query) {
     // Filter out private regsites the user doesn't have access to
     const accessibleResults = results.filter(regsite => {
         if (!regsite.private) return true;
-        return authenticated && regsite.allowedUsers.includes(currentUser.name);
+        return authenticated && (regsite.allowedUsers.includes(currentUser.id) || currentUser.superUser);
     });
     
     // Update results count
@@ -296,7 +358,8 @@ function displayResults(results, query) {
             
             // Add click event to navigate to regsite
             resultElement.addEventListener('click', () => {
-                if (regsite.private && (!authenticated || !regsite.allowedUsers.includes(currentUser.name))) {
+                if (regsite.private && (!authenticated || 
+                    (!regsite.allowedUsers.includes(currentUser.id) && !currentUser.superUser))) {
                     alert("Access denied. You do not have permission to view this regsite.");
                     return;
                 }
