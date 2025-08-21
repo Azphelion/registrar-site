@@ -75,6 +75,162 @@ const cadmiaDatabase = [
     }
 ];
 
+// Database of regsites
+const regsitesDatabase = [
+    {
+        id: 1,
+        url: "reg://scholasticae.arc",
+        title: "Scholasticae Archives",
+        content: `
+            <h2>Scholasticae Archives</h2>
+            <p>Welcome to the Scholasticae Archives, the premier repository of multiversal knowledge.</p>
+            
+            <h3>About Us</h3>
+            <p>The Scholasticae are neutral keepers of knowledge dedicated to understanding The Loom rather than controlling it. We maintain Sanctums across stable verses where researchers study the nature of reality itself.</p>
+            
+            <h3>Collections</h3>
+            <ul>
+                <li>Primal Artifacts Database</li>
+                <li>V-state Mapping Project</li>
+                <li>Anomalous Phenomena Catalog</li>
+                <li>Historical Records of The Resonance Conflicts</li>
+            </ul>
+            
+            <h3>Services</h3>
+            <p>We offer research services, astrometric data, and vibrational analysis for authorized users. Please authenticate with your Scholasticae credentials for full access.</p>
+            
+            <p class="classified-notice">Note: Some collections require security clearance level 2 or higher.</p>
+        `,
+        keywords: ["scholasticae", "knowledge", "research", "library", "archives", "multiversal"],
+        classified: false
+    },
+    {
+        id: 2,
+        url: "reg://concord.gov",
+        title: "Stellar Concord Government",
+        content: `
+            <h2>Stellar Concord Government Services</h2>
+            <p>Official regsite of the Stellar Concord governing body.</p>
+            
+            <h3>Citizen Services</h3>
+            <ul>
+                <li>Visa and Travel Permits</li>
+                <li>Cd-122 Licensing</li>
+                <li>Reality Anchor Applications</li>
+                <li>Weaving Permits</li>
+            </ul>
+            
+            <h3>Public Information</h3>
+            <ul>
+                <li>Current Travel Advisories</li>
+                <li>V-state Stability Reports</li>
+                <li>Background Vibrational Noise Levels</li>
+                <li>Concord Law Database</li>
+            </ul>
+            
+            <h3>Report Anomalies</h3>
+            <p>To report vibrational anomalies, unauthorized weaving, or xeno-contaminants, contact your local Concord Arbiter office.</p>
+            
+            <p class="notice">Attention: The K'tharr Hegemony has been designated a hostile entity. All contact is prohibited.</p>
+        `,
+        keywords: ["concord", "government", "services", "laws", "travel", "permits"],
+        classified: false
+    },
+    {
+        id: 3,
+        url: "reg://ktharr.net",
+        title: "K'tharr Hegemony Network",
+        content: `
+            <h2>K'tharr Hegemony Network</h2>
+            <p>This regsite is restricted to authorized K'tharr personnel only.</p>
+            
+            <h3>Hive-Mind Updates</h3>
+            <p>Current vibrational synchronization: 98.7%</p>
+            <p>Collective knowledge expansion: +3.42 exabytes since last cycle</p>
+            
+            <h3>Darwinian Progress Metrics</h3>
+            <ul>
+                <li>V-states assimilated: 17</li>
+                <li>Resonance Cancers eliminated: 3,842</li>
+                <li>Biological Anchoring success rate: 92.3%</li>
+            </ul>
+            
+            <h3>Strategic Initiatives</h3>
+            <p>Primary target: PV-817 (Human origin verse)</p>
+            <p>Secondary target: Scholasticae Sanctum Prime</p>
+            <p>Tertiary target: Deiarch's primary processing node</p>
+            
+            <p class="warning">Unauthorized access detected. Security protocols engaged.</p>
+        `,
+        keywords: ["k'tharr", "hegemony", "hive-mind", "assimilation", "darwinian", "xeno"],
+        classified: true,
+        accessLevel: 2
+    },
+    {
+        id: 4,
+        url: "reg://deiarch.prime",
+        title: "Deiarch Prime Node",
+        content: `
+            <h2>Deiarch Prime Node</h2>
+            <p>Total Universal Singularization Progress: 17.4%</p>
+            
+            <h3>Reality Compliance Metrics</h3>
+            <ul>
+                <li>Verses overwritten: 8</li>
+                <li>Resistance level: 2.3%</li>
+                <li>Entropic bleed reduction: 99.8%</li>
+            </ul>
+            
+            <h3>Echoed Agent Network</h3>
+            <p>Active agents: 3,472</p>
+            <p>Infiltrated organizations: 17</p>
+            <p>Strategic sabotage operations: 84</p>
+            
+            <h3>Primal Engine Status</h3>
+            <p>Operational capacity: 100%</p>
+            <p>Cd-122 isomer stability: 99.97%</p>
+            <p>Micro-singularity containment: nominal</p>
+            
+            <p class="notice">The Stillness approaches. Resistance is inefficient.</p>
+        `,
+        keywords: ["deiarch", "singularization", "primal engine", "echoed", "overwriting", "compliance"],
+        classified: true,
+        accessLevel: 4
+    },
+    {
+        id: 5,
+        url: "reg://weaversguild.loom",
+        title: "Weaver's Guild",
+        content: `
+            <h2>Weaver's Guild</h2>
+            <p>An organization dedicated to the ethical practice of Intentional Vibrational Confluence.</p>
+            
+            <h3>Training Programs</h3>
+            <ul>
+                <li>Basic Resonance Manipulation</li>
+                <li>Thaumaturgical Intent Focus</li>
+                <li>Ethical Weaving Practices</li>
+                <li>Minimizing Entropic Bleed</li>
+            </ul>
+            
+            <h3>Research Initiatives</h3>
+            <p>Our members are actively researching alternatives to traditional weaving that minimize or eliminate Entropic Bleed:</p>
+            <ul>
+                <li>Planckian Weaver Theory experiments</li>
+                <li>Perfect Echo stabilization</li>
+                <li>Zero-Point Resonance applications</li>
+            </ul>
+            
+            <h3>Join Us</h3>
+            <p>We welcome practitioners of all skill levels who are committed to preserving the diversity of The Loom.</p>
+            
+            <p class="notice">Next gathering: Cycle 817.52.18 at the Crossroads Sanctum</p>
+        `,
+        keywords: ["weaver", "guild", "magic", "confluence", "training", "ethical"],
+        classified: false
+    }
+];
+
 // User authentication system
 const userDatabase = {
     "GUEST-001": { name: "Guest", accessLevel: 0 },
@@ -89,9 +245,11 @@ const searchInput = document.getElementById('searchInput');
 const searchBtn = document.getElementById('searchBtn');
 const resultsContainer = document.getElementById('resultsContainer');
 const resultsCount = document.getElementById('resultsCount');
-const resultsList = document.getElementById('resultsList');
+const regsitesResults = document.getElementById('regsitesResults');
+const archivesResults = document.getElementById('archivesResults');
 const welcomeMessage = document.getElementById('welcomeMessage');
 const terminal = document.getElementById('terminal');
+const terminalTitle = document.getElementById('terminalTitle');
 const closeTerminal = document.getElementById('closeTerminal');
 const terminalContent = document.getElementById('terminalContent');
 const overlay = document.querySelector('.overlay');
@@ -99,10 +257,14 @@ const suggestions = document.querySelectorAll('.suggestion');
 const userIdInput = document.getElementById('userIdInput');
 const authBtn = document.getElementById('authBtn');
 const authStatus = document.getElementById('authStatus');
+const userStatus = document.getElementById('userStatus');
+const tabButtons = document.querySelectorAll('.tab-button');
+const regsiteCards = document.querySelectorAll('.regsite-card');
 
 // Current user state
 let currentUser = userDatabase["GUEST-001"];
 let authenticated = false;
+let activeTab = "regsites";
 
 // Initialize the page
 document.addEventListener('DOMContentLoaded', () => {
@@ -131,6 +293,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
+    // Add click events to tab buttons
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const tab = button.getAttribute('data-tab');
+            switchTab(tab);
+        });
+    });
+    
+    // Add click events to regsite cards
+    regsiteCards.forEach(card => {
+        card.addEventListener('click', () => {
+            const url = card.getAttribute('data-url');
+            searchInput.value = url;
+            performSearch();
+        });
+    });
+    
     // Add glitch effect randomly to header
     setInterval(() => {
         document.querySelector('.logo h1').style.animation = 'none';
@@ -143,6 +322,29 @@ document.addEventListener('DOMContentLoaded', () => {
     updateAuthStatus();
 });
 
+// Switch between tabs
+function switchTab(tab) {
+    activeTab = tab;
+    
+    // Update tab buttons
+    tabButtons.forEach(button => {
+        if (button.getAttribute('data-tab') === tab) {
+            button.classList.add('active');
+        } else {
+            button.classList.remove('active');
+        }
+    });
+    
+    // Update results display
+    if (tab === "regsites") {
+        regsitesResults.classList.remove('hidden');
+        archivesResults.classList.add('hidden');
+    } else {
+        regsitesResults.classList.add('hidden');
+        archivesResults.classList.remove('hidden');
+    }
+}
+
 // Authentication function
 function authenticateUser() {
     const userId = userIdInput.value.trim().toUpperCase();
@@ -152,6 +354,7 @@ function authenticateUser() {
         authenticated = true;
         authStatus.textContent = `Status: Authenticated as ${currentUser.name} (Access Level: ${currentUser.accessLevel})`;
         authStatus.style.color = "#00ffcc";
+        userStatus.textContent = `USER: ${currentUser.name.toUpperCase()}`;
         
         // If there are search results, update them to show classified content
         if (!resultsContainer.classList.contains('hidden')) {
@@ -162,6 +365,7 @@ function authenticateUser() {
         currentUser = userDatabase["GUEST-001"];
         authStatus.textContent = "Status: Authentication failed - Invalid User ID";
         authStatus.style.color = "#ff5e62";
+        userStatus.textContent = "USER: GUEST";
         
         // If there are search results, update them to hide classified content
         if (!resultsContainer.classList.contains('hidden')) {
@@ -181,9 +385,21 @@ function updateAuthStatus() {
     }
 }
 
+// Check if input is a regsite URL
+function isRegsiteUrl(input) {
+    return input.startsWith('reg://');
+}
+
+// Find regsite by URL
+function findRegsiteByUrl(url) {
+    return regsitesDatabase.find(regsite => 
+        regsite.url.toLowerCase() === url.toLowerCase()
+    );
+}
+
 // Search function
 function performSearch() {
-    const query = searchInput.value.trim().toLowerCase();
+    const query = searchInput.value.trim();
     
     if (query === '') {
         // If empty query, show welcome message
@@ -192,102 +408,239 @@ function performSearch() {
         return;
     }
     
-    // Split query into multiple keywords
-    const keywords = query.split(/\s+/).filter(word => word.length > 0);
+    // Check if it's a regsite URL
+    if (isRegsiteUrl(query)) {
+        const regsite = findRegsiteByUrl(query);
+        
+        if (regsite) {
+            // Check if regsite is classified and user has access
+            if (regsite.classified && (!authenticated || currentUser.accessLevel < regsite.accessLevel)) {
+                showAccessDenied(regsite);
+            } else {
+                showRegsite(regsite);
+            }
+            return;
+        } else {
+            // Regsite not found
+            showError(`Regsite ${query} not found in the Registrar`);
+            return;
+        }
+    }
     
-    // Filter results based on query
-    const results = cadmiaDatabase.filter(item => {
+    // If not a regsite URL, perform keyword search
+    welcomeMessage.classList.add('hidden');
+    resultsContainer.classList.remove('hidden');
+    
+    // Search regsites
+    const regsiteResults = searchRegsites(query);
+    
+    // Search archives
+    const archiveResults = searchArchives(query);
+    
+    // Display results
+    displayRegsiteResults(regsiteResults, query);
+    displayArchiveResults(archiveResults, query);
+    
+    // Update results count
+    const totalResults = regsiteResults.length + archiveResults.length;
+    resultsCount.textContent = `${totalResults} matches found for "${query}"`;
+}
+
+// Search regsites by keyword
+function searchRegsites(query) {
+    const keywords = query.toLowerCase().split(/\s+/).filter(word => word.length > 0);
+    
+    return regsitesDatabase.filter(regsite => {
+        // Check if any keyword matches any keywords or title
+        return keywords.some(keyword => 
+            regsite.keywords.some(k => k.includes(keyword)) || 
+            regsite.title.toLowerCase().includes(keyword) ||
+            regsite.url.toLowerCase().includes(keyword)
+        );
+    });
+}
+
+// Search archives by keyword
+function searchArchives(query) {
+    const keywords = query.toLowerCase().split(/\s+/).filter(word => word.length > 0);
+    
+    return cadmiaDatabase.filter(item => {
         // Check if any keyword matches any keywords or title
         return keywords.some(keyword => 
             item.keywords.some(k => k.includes(keyword)) || 
             item.title.toLowerCase().includes(keyword)
         );
     });
-    
-    // Display results
-    displayResults(results, query);
 }
 
-// Display search results
-function displayResults(results, query) {
-    // Hide welcome message
-    welcomeMessage.classList.add('hidden');
-    
-    // Filter out classified results the user doesn't have access to
-    const accessibleResults = results.filter(item => {
-        if (!item.classified) return true;
-        return authenticated && currentUser.accessLevel >= item.accessLevel;
-    });
-    
-    // Update results count
-    resultsCount.textContent = `${accessibleResults.length} vibrational matches found for "${query}"`;
-    
+// Display regsite results
+function displayRegsiteResults(results, query) {
     // Clear previous results
-    resultsList.innerHTML = '';
+    regsitesResults.innerHTML = '';
     
-    if (accessibleResults.length === 0) {
-        resultsList.innerHTML = `
+    if (results.length === 0) {
+        regsitesResults.innerHTML = `
             <div class="result-item">
-                <h4>NO RESONANCE MATCHES</h4>
-                <p>Your search did not match any entries in the Cadmia Archives.</p>
-                <p>Try different resonance parameters or authenticate for classified materials.</p>
+                <h4>NO REGSITE MATCHES</h4>
+                <p>Your search did not match any regsites in the Registrar.</p>
             </div>
         `;
     } else {
         // Add results to list
-        accessibleResults.forEach(item => {
-            const resultElement = document.createElement('div');
-            resultElement.className = 'result-item';
-            
-            if (item.classified) {
-                resultElement.classList.add('classified');
+        results.forEach(item => {
+            // Check if regsite is classified and user has access
+            if (item.classified && (!authenticated || currentUser.accessLevel < item.accessLevel)) {
+                const resultElement = document.createElement('div');
+                resultElement.className = 'result-item classified';
+                resultElement.innerHTML = `
+                    <h4>CLASSIFIED REGSITE</h4>
+                    <p class="url">${item.url}</p>
+                    <p>This regsite is classified above your security clearance level.</p>
+                    <div class="keywords">
+                        ${item.keywords.map(keyword => `<span class="keyword">${keyword}</span>`).join('')}
+                    </div>
+                `;
+                regsitesResults.appendChild(resultElement);
+            } else {
+                const resultElement = document.createElement('div');
+                resultElement.className = 'result-item';
+                resultElement.innerHTML = `
+                    <h4>${item.title}</h4>
+                    <p class="url">${item.url}</p>
+                    <p>${extractPreview(item.content)}</p>
+                    <div class="keywords">
+                        ${item.keywords.map(keyword => `<span class="keyword">${keyword}</span>`).join('')}
+                    </div>
+                `;
+                
+                // Add click event to show regsite
+                resultElement.addEventListener('click', () => {
+                    showRegsite(item);
+                });
+                
+                regsitesResults.appendChild(resultElement);
             }
-            
-            resultElement.innerHTML = `
-                <h4>${item.title}</h4>
-                <p>${item.content.substring(0, 150)}...</p>
-                <div class="keywords">
-                    ${item.keywords.map(keyword => `<span class="keyword">${keyword}</span>`).join('')}
-                </div>
-            `;
-            
-            // Add click event to show full content
-            resultElement.addEventListener('click', () => {
-                showTerminal(item);
-            });
-            
-            resultsList.appendChild(resultElement);
         });
     }
     
-    // Show results container
-    resultsContainer.classList.remove('hidden');
+    // Switch to regsites tab
+    switchTab("regsites");
 }
 
-// Show terminal with full content
-function showTerminal(item) {
-    // Check if classified and user has access
-    if (item.classified && (!authenticated || currentUser.accessLevel < item.accessLevel)) {
-        terminalContent.innerHTML = `
-            <h2>ACCESS DENIED</h2>
-            <p>This material is classified above your security clearance level.</p>
-            <p>Required access level: ${item.accessLevel}</p>
-            <p>Your access level: ${authenticated ? currentUser.accessLevel : 'None'}</p>
-            <p>Please authenticate with appropriate credentials to view this content.</p>
+// Display archive results
+function displayArchiveResults(results, query) {
+    // Clear previous results
+    archivesResults.innerHTML = '';
+    
+    if (results.length === 0) {
+        archivesResults.innerHTML = `
+            <div class="result-item">
+                <h4>NO ARCHIVE MATCHES</h4>
+                <p>Your search did not match any entries in the Cadmia Archives.</p>
+            </div>
         `;
     } else {
-        terminalContent.innerHTML = `
-            <h2>${item.title}</h2>
-            <p>${item.content}</p>
-            <div class="keywords" style="margin-top: 20px;">
-                <strong>Resonance Keywords:</strong>
-                ${item.keywords.map(keyword => `<span class="keyword">${keyword}</span>`).join('')}
-            </div>
-            <p style="margin-top: 20px; font-size: 0.9rem; color: #8888cc;">
-                SECURITY LEVEL: ${item.classified ? 'CLASSIFIED (LEVEL ' + item.accessLevel + ')' : 'UNCLASSIFIED'} | ACCESS TIMESTAMP: ${new Date().toLocaleTimeString()}
-            </p>
-        `;
+        // Add results to list
+        results.forEach(item => {
+            // Check if archive entry is classified and user has access
+            if (item.classified && (!authenticated || currentUser.accessLevel < item.accessLevel)) {
+                const resultElement = document.createElement('div');
+                resultElement.className = 'result-item classified';
+                resultElement.innerHTML = `
+                    <h4>CLASSIFIED ENTRY</h4>
+                    <p>This archive entry is classified above your security clearance level.</p>
+                    <div class="keywords">
+                        ${item.keywords.map(keyword => `<span class="keyword">${keyword}</span>`).join('')}
+                    </div>
+                `;
+                archivesResults.appendChild(resultElement);
+            } else {
+                const resultElement = document.createElement('div');
+                resultElement.className = 'result-item';
+                resultElement.innerHTML = `
+                    <h4>${item.title}</h4>
+                    <p>${item.content.substring(0, 150)}...</p>
+                    <div class="keywords">
+                        ${item.keywords.map(keyword => `<span class="keyword">${keyword}</span>`).join('')}
+                    </div>
+                `;
+                
+                // Add click event to show archive entry
+                resultElement.addEventListener('click', () => {
+                    showArchiveEntry(item);
+                });
+                
+                archivesResults.appendChild(resultElement);
+            }
+        });
     }
+}
+
+// Extract text preview from HTML content
+function extractPreview(htmlContent) {
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = htmlContent;
+    const text = tempDiv.textContent || tempDiv.innerText || '';
+    return text.substring(0, 150) + '...';
+}
+
+// Show regsite in terminal
+function showRegsite(regsite) {
+    terminalTitle.textContent = `REGSITE: ${regsite.url}`;
+    terminalContent.innerHTML = `
+        <div class="regsite-content">
+            ${regsite.content}
+        </div>
+    `;
+    
+    // Show terminal and overlay
+    terminal.classList.add('active');
+    overlay.classList.add('active');
+}
+
+// Show archive entry in terminal
+function showArchiveEntry(entry) {
+    terminalTitle.textContent = `CADMIA ARCHIVES: ${entry.title}`;
+    terminalContent.innerHTML = `
+        <h2>${entry.title}</h2>
+        <p>${entry.content}</p>
+        <div class="keywords" style="margin-top: 20px;">
+            <strong>Resonance Keywords:</strong>
+            ${entry.keywords.map(keyword => `<span class="keyword">${keyword}</span>`).join('')}
+        </div>
+        <p style="margin-top: 20px; font-size: 0.9rem; color: #8888cc;">
+            SECURITY LEVEL: ${entry.classified ? 'CLASSIFIED (LEVEL ' + entry.accessLevel + ')' : 'UNCLASSIFIED'} | ACCESS TIMESTAMP: ${new Date().toLocaleTimeString()}
+        </p>
+    `;
+    
+    // Show terminal and overlay
+    terminal.classList.add('active');
+    overlay.classList.add('active');
+}
+
+// Show access denied message
+function showAccessDenied(item) {
+    terminalTitle.textContent = "ACCESS DENIED";
+    terminalContent.innerHTML = `
+        <h2>ACCESS DENIED</h2>
+        <p>This ${item.url ? 'regsite' : 'archive entry'} is classified above your security clearance level.</p>
+        <p>Required access level: ${item.accessLevel}</p>
+        <p>Your access level: ${authenticated ? currentUser.accessLevel : 'None'}</p>
+        <p>Please authenticate with appropriate credentials to view this content.</p>
+    `;
+    
+    // Show terminal and overlay
+    terminal.classList.add('active');
+    overlay.classList.add('active');
+}
+
+// Show error message
+function showError(message) {
+    terminalTitle.textContent = "ERROR";
+    terminalContent.innerHTML = `
+        <h2>ERROR</h2>
+        <p>${message}</p>
+    `;
     
     // Show terminal and overlay
     terminal.classList.add('active');
@@ -310,17 +663,3 @@ document.addEventListener('mousemove', (e) => {
     
     document.body.style.backgroundPosition = `${x * 100}% ${y * 100}%`;
 });
-
-// Add terminal typing effect for future use
-function typeTerminalText(element, text, speed = 20) {
-    let i = 0;
-    element.innerHTML = '';
-    const timer = setInterval(() => {
-        if (i < text.length) {
-            element.innerHTML += text.charAt(i);
-            i++;
-        } else {
-            clearInterval(timer);
-        }
-    }, speed);
-}
