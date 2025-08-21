@@ -28,8 +28,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 justify-content: space-between;
                 align-items: center;
                 padding: 15px 20px;
-                background: rgba(10, 15, 40, 0.9);
-                border-bottom: 1px solid rgba(100, 120, 255, 0.3);
+                background: rgba(15, 20, 45, 0.9);
+                border-bottom: 1px solid rgba(120, 140, 255, 0.4);
                 backdrop-filter: blur(5px);
                 position: sticky;
                 top: 0;
@@ -39,9 +39,10 @@ document.addEventListener('DOMContentLoaded', function() {
             .nav-logo a {
                 font-family: 'Orbitron', sans-serif;
                 font-weight: 700;
-                color: #6c5ce7;
+                color: #7d6eff;
                 text-decoration: none;
                 font-size: 1.2rem;
+                text-shadow: 0 0 5px rgba(125, 110, 255, 0.5);
             }
             
             .nav-search {
@@ -54,17 +55,17 @@ document.addEventListener('DOMContentLoaded', function() {
             #nav-search-input {
                 flex: 1;
                 padding: 8px 12px;
-                background: rgba(5, 10, 30, 0.8);
-                border: 1px solid rgba(100, 120, 255, 0.3);
+                background: rgba(10, 15, 35, 0.9);
+                border: 1px solid rgba(120, 140, 255, 0.4);
                 border-right: none;
                 border-radius: 4px 0 0 4px;
-                color: #e0e0ff;
+                color: #f0f0ff;
                 font-family: 'Space Grotesk', sans-serif;
             }
             
             #nav-search-btn {
                 padding: 8px 15px;
-                background: linear-gradient(135deg, #6c5ce7 0%, #4a3fb9 100%);
+                background: linear-gradient(135deg, #7d6eff 0%, #5a4fd9 100%);
                 border: none;
                 border-radius: 0 4px 4px 0;
                 color: white;
@@ -79,16 +80,20 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             #nav-user-status {
-                color: #00ffcc;
+                color: #00ffdd;
                 font-size: 0.9rem;
+                background: rgba(0, 255, 221, 0.15);
+                padding: 4px 8px;
+                border-radius: 3px;
+                border: 1px solid rgba(0, 255, 221, 0.3);
             }
             
             #nav-auth-btn {
                 padding: 6px 12px;
-                background: rgba(255, 153, 102, 0.2);
-                border: 1px solid rgba(255, 153, 102, 0.5);
+                background: rgba(255, 170, 85, 0.2);
+                border: 1px solid rgba(255, 170, 85, 0.5);
                 border-radius: 4px;
-                color: #ff9966;
+                color: #ffaa55;
                 font-family: 'Space Grotesk', sans-serif;
                 cursor: pointer;
             }
@@ -118,10 +123,12 @@ document.addEventListener('DOMContentLoaded', function() {
         if (savedUser) {
             const userData = JSON.parse(savedUser);
             const userDatabase = {
-                "RESEARCH-772": { name: "Research Assistant" },
-                "ARBITER-553": { name: "Concord Arbiter" },
-                "SCHOLAR-009": { name: "Scholasticae Scholar" },
-                "DIRECTOR-001": { name: "Concord Director" }
+                "RESEARCH-772": { name: "Dr. Aris Thorne" },
+                "ARBITER-553": { name: "Commander Valerius" },
+                "SCHOLAR-009": { name: "Lysandra Vex" },
+                "DIRECTOR-001": { name: "Director Marcus Kane" },
+                "TECH-228": { name: "Engineer Juno" },
+                "SUPER-001": { name: "Administrator Prime" }
             };
             
             if (userDatabase[userData.id]) {
