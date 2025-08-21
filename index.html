@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadmia Archives | The Loom Interface</title>
+    <title>Cadmia Registrar | The Loom Interface</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
@@ -11,35 +11,35 @@
     <div class="container">
         <header>
             <div class="logo">
-                <h1>CADMIA ARCHIVES</h1>
-                <p>Loom Interface System v7.23</p>
+                <h1>CADMIA REGISTRAR</h1>
+                <p>Loom Network Access Point v9.42</p>
             </div>
             <div class="status-bar">
                 <span class="status">CONNECTION: QUANTUM ENTANGLED</span>
                 <span class="status">VIBRATIONAL STATE: STABLE</span>
-                <span class="status">USER: GUEST</span>
+                <span class="status" id="userStatus">USER: GUEST</span>
             </div>
         </header>
 
         <main>
             <div class="search-container">
                 <div class="search-header">
-                    <h2>MULTIVERSAL KNOWLEDGE REPOSITORY</h2>
-                    <p>Access to The Loom database - Unauthorized access will be prosecuted</p>
+                    <h2>REGISTRAR ACCESS PORTAL</h2>
+                    <p>Enter regsite address or search query - Unauthorized access monitored</p>
                 </div>
                 <div class="search-box">
-                    <input type="text" id="searchInput" placeholder="ENTER RESONANCE QUERY...">
-                    <button id="searchBtn">INITIATE RESONANCE SEARCH</button>
+                    <input type="text" id="searchInput" placeholder="ENTER REGSITE OR QUERY...">
+                    <button id="searchBtn">INITIATE CONNECTION</button>
                 </div>
                 <div class="search-suggestions">
-                    <p>Suggested queries: <span class="suggestion">The Loom</span>, <span class="suggestion">Cadmium-122</span>, <span class="suggestion">Stellar Concord</span></p>
+                    <p>Popular regsites: <span class="suggestion">reg://scholasticae.arc</span>, <span class="suggestion">reg://concord.gov</span>, <span class="suggestion">reg://ktharr.net</span></p>
                 </div>
             </div>
 
             <div class="auth-container">
-                <h3>CLASSIFIED ACCESS</h3>
+                <h3>SECURE ACCESS</h3>
                 <div class="auth-box">
-                    <input type="password" id="userIdInput" placeholder="ENTER USER ID FOR CLASSIFIED FILES">
+                    <input type="password" id="userIdInput" placeholder="ENTER USER ID FOR SECURE REGSITES">
                     <button id="authBtn">AUTHENTICATE</button>
                 </div>
                 <p id="authStatus">Status: Not authenticated</p>
@@ -47,20 +47,27 @@
 
             <div id="resultsContainer" class="results-container hidden">
                 <div class="results-header">
-                    <h3>RESONANCE SEARCH RESULTS</h3>
-                    <p id="resultsCount">0 vibrational matches found</p>
+                    <h3>REGISTRAR RESULTS</h3>
+                    <p id="resultsCount">0 matches found</p>
                 </div>
-                <div id="resultsList" class="results-list">
-                    <!-- Results will be inserted here by JavaScript -->
+                <div class="results-tabs">
+                    <button class="tab-button active" data-tab="regsites">Regsites</button>
+                    <button class="tab-button" data-tab="archives">Cadmia Archives</button>
+                </div>
+                <div id="regsitesResults" class="results-list">
+                    <!-- Regsite results will be inserted here by JavaScript -->
+                </div>
+                <div id="archivesResults" class="results-list hidden">
+                    <!-- Archive results will be inserted here by JavaScript -->
                 </div>
             </div>
 
             <div id="welcomeMessage" class="welcome-message">
-                <h3>WELCOME TO THE CADMIA MULTIVERSAL ARCHIVES</h3>
-                <p>This database contains information about The Loom, its vibrational states, and the factions navigating the multiverse.</p>
-                <p>Enter a resonance query above to access files. Some materials require security clearance.</p>
+                <h3>WELCOME TO THE CADMIA REGISTRAR</h3>
+                <p>The Registrar is the Loom's interconnected network of informational regsites and the Cadmia Archives.</p>
+                <p>Enter a regsite address (e.g., reg://example.loom) or search query above to begin.</p>
                 <div class="system-status">
-                    <h4>SYSTEM STATUS</h4>
+                    <h4>NETWORK STATUS</h4>
                     <ul>
                         <li>Background Vibrational Noise: MODERATE</li>
                         <li>Interstitial Veil Activity: NOMINAL</li>
@@ -68,18 +75,35 @@
                         <li>Entropic Bleed: 0.023% ABOVE BASELINE</li>
                     </ul>
                 </div>
+                <div class="featured-regsites">
+                    <h4>FEATURED REGSITES</h4>
+                    <div class="regsite-grid">
+                        <div class="regsite-card" data-url="reg://scholasticae.arc">
+                            <h5>Scholasticae Archives</h5>
+                            <p>Multiversal knowledge repository</p>
+                        </div>
+                        <div class="regsite-card" data-url="reg://concord.gov">
+                            <h5>Stellar Concord</h5>
+                            <p>Government services and information</p>
+                        </div>
+                        <div class="regsite-card" data-url="reg://ktharr.net">
+                            <h5>K'tharr Network</h5>
+                            <p>Xeno-cultural exchange (Restricted)</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </main>
 
         <footer>
-            <p>Property of The Scholasticae | Multiversal Date: 817.45.19</p>
-            <p>Unauthorized access is prohibited and monitored by Concord Arbiters</p>
+            <p>Network operated by The Scholasticae | Multiversal Date: 817.45.19</p>
+            <p>Unauthorized access is prohibited under Concord Law</p>
         </footer>
     </div>
 
     <div class="terminal-window hidden" id="terminal">
         <div class="terminal-header">
-            <h3>SECURE DATA STREAM</h3>
+            <h3 id="terminalTitle">SECURE DATA STREAM</h3>
             <button class="close-terminal" id="closeTerminal">X</button>
         </div>
         <div class="terminal-content" id="terminalContent">
