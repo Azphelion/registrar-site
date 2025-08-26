@@ -3,434 +3,161 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Registrar - Gateway to The Loom</title>
-    <style>
-        /* Cosmic color scheme */
-        :root {
-            --cosmic-dark: #0a0a1a;
-            --cosmic-darker: #050510;
-            --cosmic-purple: #6a0dad;
-            --cosmic-blue: #0066cc;
-            --cosmic-cyan: #00ccff;
-            --cosmic-pink: #ff33cc;
-            --cosmic-text: #e0e0ff;
-            --cosmic-border: #2a2a4a;
-        }
-        
-        /* Base styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            background-color: var(--cosmic-darker);
-            color: var(--cosmic-text);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(107, 0, 232, 0.1) 0%, transparent 20%),
-                radial-gradient(circle at 90% 60%, rgba(0, 204, 255, 0.1) 0%, transparent 20%),
-                radial-gradient(circle at 40% 80%, rgba(255, 51, 204, 0.1) 0%, transparent 20%);
-            min-height: 100vh;
-        }
-        
-        /* Typography */
-        h1, h2, h3 {
-            font-weight: 300;
-            margin-bottom: 1rem;
-            text-shadow: 0 0 10px rgba(224, 224, 255, 0.3);
-        }
-        
-        h1 {
-            font-size: 3rem;
-            background: linear-gradient(90deg, var(--cosmic-cyan), var(--cosmic-pink));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin-bottom: 0.5rem;
-        }
-        
-        h2 {
-            font-size: 1.8rem;
-            color: var(--cosmic-cyan);
-        }
-        
-        h3 {
-            font-size: 1.4rem;
-            color: var(--cosmic-pink);
-        }
-        
-        p {
-            margin-bottom: 1.5rem;
-            max-width: 65ch;
-        }
-        
-        /* Layout */
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-        
-        /* Header styles */
-        header {
-            padding: 2rem 0;
-            text-align: center;
-            border-bottom: 1px solid var(--cosmic-border);
-            background-color: rgba(10, 10, 26, 0.8);
-            backdrop-filter: blur(10px);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--cosmic-cyan), transparent);
-            animation: pulse 3s infinite;
-        }
-        
-        .subtitle {
-            font-size: 1.2rem;
-            color: var(--cosmic-cyan);
-            margin-bottom: 2rem;
-        }
-        
-        /* Main content */
-        main {
-            padding: 3rem 0;
-        }
-        
-        .intro {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-        
-        .search-section {
-            background-color: rgba(10, 10, 26, 0.6);
-            border-radius: 12px;
-            padding: 2.5rem;
-            margin-bottom: 3rem;
-            border: 1px solid var(--cosmic-border);
-            box-shadow: 0 0 30px rgba(0, 204, 255, 0.1);
-        }
-        
-        .search-box {
-            display: flex;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
-        .search-input {
-            flex-grow: 1;
-            padding: 1rem 1.5rem;
-            background-color: rgba(26, 26, 42, 0.7);
-            border: 1px solid var(--cosmic-border);
-            border-right: none;
-            border-radius: 8px 0 0 8px;
-            color: var(--cosmic-text);
-            font-size: 1.1rem;
-            outline: none;
-            transition: all 0.3s ease;
-        }
-        
-        .search-input:focus {
-            border-color: var(--cosmic-cyan);
-            box-shadow: 0 0 15px rgba(0, 204, 255, 0.3);
-        }
-        
-        .search-button {
-            padding: 1rem 1.8rem;
-            background: linear-gradient(135deg, var(--cosmic-blue), var(--cosmic-purple));
-            border: none;
-            border-radius: 0 8px 8px 0;
-            color: white;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .search-button:hover {
-            background: linear-gradient(135deg, var(--cosmic-purple), var(--cosmic-pink));
-            box-shadow: 0 0 15px rgba(255, 51, 204, 0.3);
-        }
-        
-        .examples {
-            text-align: center;
-            margin-top: 1rem;
-            font-size: 0.9rem;
-            color: #a0a0cc;
-        }
-        
-        /* Featured section */
-        .featured {
-            margin-bottom: 4rem;
-        }
-        
-        .regsite-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        
-        .regsite-card {
-            background: linear-gradient(145deg, rgba(15, 15, 35, 0.7), rgba(10, 10, 26, 0.7));
-            border: 1px solid var(--cosmic-border);
-            border-radius: 12px;
-            padding: 1.5rem;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .regsite-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--cosmic-cyan), var(--cosmic-pink));
-            opacity: 0.7;
-            transform: translateY(-3px);
-            transition: transform 0.3s ease;
-        }
-        
-        .regsite-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-        }
-        
-        .regsite-card:hover::before {
-            transform: translateY(0);
-        }
-        
-        .regsite-url {
-            color: var(--cosmic-cyan);
-            font-family: 'Courier New', monospace;
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-            display: block;
-        }
-        
-        .regsite-desc {
-            font-size: 0.95rem;
-            color: #c0c0e0;
-        }
-        
-        /* Info section */
-        .info-section {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-        
-        .info-card {
-            background-color: rgba(15, 15, 35, 0.5);
-            border-radius: 12px;
-            padding: 2rem;
-            border: 1px solid var(--cosmic-border);
-        }
-        
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 2rem 0;
-            border-top: 1px solid var(--cosmic-border);
-            margin-top: 3rem;
-            font-size: 0.9rem;
-            color: #a0a0cc;
-        }
-        
-        /* Animations */
-        @keyframes pulse {
-            0% { opacity: 0; }
-            50% { opacity: 1; }
-            100% { opacity: 0; }
-        }
-        
-        @keyframes float {
-            0% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0); }
-        }
-        
-        .floating {
-            animation: float 5s ease-in-out infinite;
-        }
-        
-        /* Responsive design */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.2rem;
-            }
-            
-            h2 {
-                font-size: 1.5rem;
-            }
-            
-            .search-box {
-                flex-direction: column;
-            }
-            
-            .search-input {
-                border-right: 1px solid var(--cosmic-border);
-                border-radius: 8px 8px 0 0;
-                margin-bottom: 1px;
-            }
-            
-            .search-button {
-                border-radius: 0 0 8px 8px;
-            }
-            
-            .regsite-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <title>The Registrar Network - Stellar Concord</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>The Registrar</h1>
-            <p class="subtitle">Gateway to The Loom • Accessing Multiversal Networks</p>
+    <div id="nav-container"></div>
+    
+    <main class="registrar-container">
+        <header class="registrar-header">
+            <div class="header-content">
+                <div class="logo-container">
+                    <div class="concord-logo">
+                        <div class="logo-inner">
+                            <span class="logo-pulse"></span>
+                            <span class="logo-text">SC</span>
+                        </div>
+                    </div>
+                    <h1 class="registrar-title">The Registrar Network</h1>
+                </div>
+                <p class="registrar-subtitle">A Stellar Concord Regulated System connected via the NV-432 Standard Frequency</p>
+                <p class="registrar-description">The primary information network serving the vibrational states of The Loom</p>
+            </div>
         </header>
 
-        <main>
-            <section class="intro">
-                <h2>Navigate the Vibrational States of The Loom</h2>
-                <p>The Registrar is your access point to the interconnected networks spanning the multiverse. Search for regsites, access Concord databases, or explore Scholasticae archives.</p>
-            </section>
-
-            <section class="search-section">
-                <h2>Enter Regsite Address</h2>
-                <div class="search-box">
-                    <input type="text" class="search-input" placeholder="reg://sitename.arc" id="search-input">
-                    <button class="search-button" onclick="navigateToSite()">Navigate</button>
+        <section class="search-section">
+            <div class="search-container">
+                <div class="search-header">
+                    <span class="search-icon">⟠</span>
+                    <h2>Registrar Access Terminal</h2>
                 </div>
-                <p class="examples">Examples: reg://scholasticae-archive.schol, reg://concord-directory.con, reg://house-thanatos.arc</p>
-            </section>
+                <div class="search-input-container">
+                    <input type="text" id="regsearch" placeholder="Enter reg:// address or search keywords" class="search-input">
+                    <button onclick="performSearch()" class="search-button">Navigate</button>
+                </div>
+                <div class="search-examples">
+                    <p>Try: <span class="example-link" onclick="fillSearch('reg://scholasticae-public.schol')">reg://scholasticae-public.schol</span> or <span class="example-link" onclick="fillSearch('anchor stability')">anchor stability</span></p>
+                </div>
+            </div>
+        </section>
 
-            <section class="featured">
-                <h2>Featured Regsites</h2>
-                <div class="regsite-grid">
-                    <div class="regsite-card">
-                        <span class="regsite-url">reg://scholasticae-public.schol</span>
-                        <h3>Scholasticae Public Access</h3>
-                        <p class="regsite-desc">Open knowledge repository with public research on vibrational states, Cd-122 properties, and multiversal theory.</p>
+        <section class="status-section">
+            <div class="status-container">
+                <h2>Network Status: <span class="status-active">Active</span></h2>
+                <div class="status-grid">
+                    <div class="status-item">
+                        <h3>Reality Anchor Stability</h3>
+                        <div class="status-meter">
+                            <div class="meter-fill" style="width: 92%"></div>
+                            <span class="meter-text">92%</span>
+                        </div>
+                        <p class="status-desc">Within acceptable parameters</p>
                     </div>
-                    
-                    <div class="regsite-card">
-                        <span class="regsite-url">reg://concord-public.con</span>
-                        <h3>Concord Public Information</h3>
-                        <p class="regsite-desc">Official Stellar Concord communications, public service announcements, and regulated travel information.</p>
+                    <div class="status-item">
+                        <h3>Vibrational Traffic</h3>
+                        <div class="status-meter">
+                            <div class="meter-fill" style="width: 78%"></div>
+                            <span class="meter-text">78%</span>
+                        </div>
+                        <p class="status-desc">Moderate congestion detected</p>
                     </div>
-                    
-                    <div class="regsite-card">
-                        <span class="regsite-url">reg://anchor-status.con</span>
-                        <h3>Anchor Status Network</h3>
-                        <p class="regsite-desc">Real-time monitoring of Reality Anchor stability across Concord-protected vibrational states. (Access restricted)</p>
+                    <div class="status-item">
+                        <h3>Entropic Bleed</h3>
+                        <div class="status-meter">
+                            <div class="meter-fill bleed-meter" style="width: 17%"></div>
+                            <span class="meter-text">0.17μV</span>
+                        </div>
+                        <p class="status-desc">Minimal fluctuation</p>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <section class="info-section">
-                <div class="info-card">
-                    <h3>About The Registrar</h3>
-                    <p>The Registrar is the primary information network serving the stabilized vibrational states of The Loom. Initially developed by the Stellar Concord for official communications, it has expanded to include academic, commercial, and personal regsites.</p>
+        <section class="features-section">
+            <h2>Featured Regsites</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="card-icon">📚</div>
+                    <h3>Scholasticae Archive</h3>
+                    <p>Access academic research and historical records from across The Loom</p>
+                    <button onclick="fillSearch('reg://scholasticae-archive.schol')" class="card-button">Visit</button>
                 </div>
-                
-                <div class="info-card">
-                    <h3>Access Levels</h3>
-                    <p>Many regsites require specific access credentials. Concord personnel, registered Mage Houses, Scholasticae members, and approved civilians have varying levels of access to restricted materials.</p>
+                <div class="feature-card">
+                    <div class="card-icon">⚓</div>
+                    <h3>Anchor Status Network</h3>
+                    <p>Real-time monitoring of Reality Anchor stability across Concord-protected vibrational states</p>
+                    <button onclick="fillSearch('reg://anchor-status.con')" class="card-button">Visit</button>
                 </div>
-                
-                <div class="info-card">
-                    <h3>Network Security</h3>
-                    <p>All Registrar traffic is monitored by Concord Arbiters for vibrational contamination. Attempting to access restricted materials without proper authorization may result in permanent network access revocation.</p>
+                <div class="feature-card">
+                    <div class="card-icon">📜</div>
+                    <h3>Concord Directives</h3>
+                    <p>Official communications and regulations from the Stellar Concord</p>
+                    <button onclick="fillSearch('reg://concord-directory.con')" class="card-button">Visit</button>
                 </div>
-            </section>
-        </main>
+                <div class="feature-card">
+                    <div class="card-icon">⚠️</div>
+                    <h3>Singularization Advisory</h3>
+                    <p>Documentation on entropic bleed and universal singularization protocols</p>
+                    <button onclick="fillSearch('singularization')" class="card-button">Learn More</button>
+                </div>
+            </div>
+        </section>
 
-        <footer>
-            <p>⚡ The Registrar Network • A Stellar Concord Regulated System • PV-817 Standard Frequency</p>
-            <p>Background Vibrational Noise: 0.0732 Δv • Last Singularization Event: 14.52 cycles ago</p>
+        <section class="news-section">
+            <h2>Latest Network Updates</h2>
+            <div class="news-container">
+                <div class="news-item">
+                    <h3>NV-432 Standard Frequency Update</h3>
+                    <p class="news-date">Stardate 237.5.18</p>
+                    <p>The Concord Engineering Corps has released an update to the NV-432 Standard Frequency protocol, improving vibrational transmission stability by 12%.</p>
+                </div>
+                <div class="news-item">
+                    <h3>New Reality Anchor Deployed in PV-817</h3>
+                    <p class="news-date">Stardate 237.5.12</p>
+                    <p>A new Cadmium-122 Reality Anchor has been successfully deployed in the PV-817 vibrational state to stabilize increasing entropic fluctuations.</p>
+                </div>
+                <div class="news-item">
+                    <h3>Scholasticae Research Symposium</h3>
+                    <p class="news-date">Stardate 237.5.05</p>
+                    <p>The annual Inter-Vibrational Research Symposium will be hosted virtually this cycle. Registration now open through the Scholasticae Archive.</p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="registrar-footer">
+            <div class="footer-content">
+                <p>The Registrar Network operates under the authority of the Stellar Concord</p>
+                <p>NV-432 Standard Frequency | Cd-122 Quantum Encryption | V-State Compliant</p>
+                <p>⚠️ Unauthorized access to restricted regsites is punishable under Concord Directive 7.12</p>
+            </div>
         </footer>
+    </main>
+
+    <div id="login-modal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeLoginForm()">&times;</span>
+            <h2>Registrar Authentication</h2>
+            <form onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="username">User ID:</label>
+                    <input type="text" id="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Access Code:</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit">Authenticate</button>
+            </form>
+            <p class="guest-notice">Or <a href="#" onclick="continueAsGuest()">continue as guest</a> with limited access.</p>
+        </div>
     </div>
 
-    <script>
-        // Function to handle navigation
-        function navigateToSite() {
-            const input = document.getElementById('search-input').value.trim();
-            
-            if (!input) {
-                alert('Please enter a regsite address');
-                return;
-            }
-            
-            // Check if it's a valid reg:// URL
-            if (!input.startsWith('reg://')) {
-                alert('Regsite addresses must start with reg://');
-                return;
-            }
-            
-            // Extract the site name and extension
-            const sitePath = input.replace('reg://', '');
-            const parts = sitePath.split('.');
-            
-            if (parts.length < 2) {
-                alert('Invalid regsite address format. Should be reg://sitename.extension');
-                return;
-            }
-            
-            const siteName = parts[0];
-            const extension = parts[1];
-            
-            // Map extensions to folder names
-            const extensionMap = {
-                'con': 'concord',
-                'schol': 'scholasticae',
-                'arc': 'archive'
-            };
-            
-            const folder = extensionMap[extension] || 'other';
-            
-            // In a real implementation, this would redirect to the actual page
-            alert(`Navigating to: ${input}\n\nThis would redirect to /regsites/${folder}/${siteName}/`);
-            
-            // For demonstration purposes, we're just showing an alert
-            // In your actual implementation, you would use:
-            // window.location.href = `/regsites/${folder}/${siteName}/`;
-        }
-        
-        // Allow Enter key to trigger navigation
-        document.getElementById('search-input').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                navigateToSite();
-            }
-        });
-        
-        // Add some interactive effects
-        document.querySelectorAll('.regsite-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-5px)';
-                this.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.2)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = '';
-                this.style.boxShadow = '';
-            });
-        });
-    </script>
+    <div id="search-results" class="search-results" style="display:none;"></div>
+
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/navbar.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
