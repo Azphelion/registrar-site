@@ -3,82 +3,434 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Registrar - The Loom's Gateway</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
+    <title>The Registrar - Gateway to The Loom</title>
+    <style>
+        /* Cosmic color scheme */
+        :root {
+            --cosmic-dark: #0a0a1a;
+            --cosmic-darker: #050510;
+            --cosmic-purple: #6a0dad;
+            --cosmic-blue: #0066cc;
+            --cosmic-cyan: #00ccff;
+            --cosmic-pink: #ff33cc;
+            --cosmic-text: #e0e0ff;
+            --cosmic-border: #2a2a4a;
+        }
+        
+        /* Base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: var(--cosmic-darker);
+            color: var(--cosmic-text);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(107, 0, 232, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 60%, rgba(0, 204, 255, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 40% 80%, rgba(255, 51, 204, 0.1) 0%, transparent 20%);
+            min-height: 100vh;
+        }
+        
+        /* Typography */
+        h1, h2, h3 {
+            font-weight: 300;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px rgba(224, 224, 255, 0.3);
+        }
+        
+        h1 {
+            font-size: 3rem;
+            background: linear-gradient(90deg, var(--cosmic-cyan), var(--cosmic-pink));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            color: var(--cosmic-cyan);
+        }
+        
+        h3 {
+            font-size: 1.4rem;
+            color: var(--cosmic-pink);
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+            max-width: 65ch;
+        }
+        
+        /* Layout */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        /* Header styles */
+        header {
+            padding: 2rem 0;
+            text-align: center;
+            border-bottom: 1px solid var(--cosmic-border);
+            background-color: rgba(10, 10, 26, 0.8);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--cosmic-cyan), transparent);
+            animation: pulse 3s infinite;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--cosmic-cyan);
+            margin-bottom: 2rem;
+        }
+        
+        /* Main content */
+        main {
+            padding: 3rem 0;
+        }
+        
+        .intro {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .search-section {
+            background-color: rgba(10, 10, 26, 0.6);
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            border: 1px solid var(--cosmic-border);
+            box-shadow: 0 0 30px rgba(0, 204, 255, 0.1);
+        }
+        
+        .search-box {
+            display: flex;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .search-input {
+            flex-grow: 1;
+            padding: 1rem 1.5rem;
+            background-color: rgba(26, 26, 42, 0.7);
+            border: 1px solid var(--cosmic-border);
+            border-right: none;
+            border-radius: 8px 0 0 8px;
+            color: var(--cosmic-text);
+            font-size: 1.1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        
+        .search-input:focus {
+            border-color: var(--cosmic-cyan);
+            box-shadow: 0 0 15px rgba(0, 204, 255, 0.3);
+        }
+        
+        .search-button {
+            padding: 1rem 1.8rem;
+            background: linear-gradient(135deg, var(--cosmic-blue), var(--cosmic-purple));
+            border: none;
+            border-radius: 0 8px 8px 0;
+            color: white;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .search-button:hover {
+            background: linear-gradient(135deg, var(--cosmic-purple), var(--cosmic-pink));
+            box-shadow: 0 0 15px rgba(255, 51, 204, 0.3);
+        }
+        
+        .examples {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: #a0a0cc;
+        }
+        
+        /* Featured section */
+        .featured {
+            margin-bottom: 4rem;
+        }
+        
+        .regsite-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .regsite-card {
+            background: linear-gradient(145deg, rgba(15, 15, 35, 0.7), rgba(10, 10, 26, 0.7));
+            border: 1px solid var(--cosmic-border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .regsite-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--cosmic-cyan), var(--cosmic-pink));
+            opacity: 0.7;
+            transform: translateY(-3px);
+            transition: transform 0.3s ease;
+        }
+        
+        .regsite-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .regsite-card:hover::before {
+            transform: translateY(0);
+        }
+        
+        .regsite-url {
+            color: var(--cosmic-cyan);
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        
+        .regsite-desc {
+            font-size: 0.95rem;
+            color: #c0c0e0;
+        }
+        
+        /* Info section */
+        .info-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .info-card {
+            background-color: rgba(15, 15, 35, 0.5);
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid var(--cosmic-border);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 1px solid var(--cosmic-border);
+            margin-top: 3rem;
+            font-size: 0.9rem;
+            color: #a0a0cc;
+        }
+        
+        /* Animations */
+        @keyframes pulse {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+        
+        .floating {
+            animation: float 5s ease-in-out infinite;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .search-box {
+                flex-direction: column;
+            }
+            
+            .search-input {
+                border-right: 1px solid var(--cosmic-border);
+                border-radius: 8px 8px 0 0;
+                margin-bottom: 1px;
+            }
+            
+            .search-button {
+                border-radius: 0 0 8px 8px;
+            }
+            
+            .regsite-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <div class="logo">
-                <h1>THE REGISTRAR</h1>
-                <p>Gateway to The Loom's Knowledge Network</p>
-            </div>
-            <div class="status-bar">
-                <span class="status">CONNECTION: QUANTUM ENTANGLED</span>
-                <span class="status">VIBRATIONAL STATE: STABLE</span>
-                <span id="userStatus">USER: GUEST</span>
-            </div>
+            <h1>The Registrar</h1>
+            <p class="subtitle">Gateway to The Loom • Accessing Multiversal Networks</p>
         </header>
 
         <main>
-            <div class="search-container">
-                <div class="search-header">
-                    <h2>REGISTRAR SEARCH INTERFACE</h2>
-                    <p>Access regsites across The Loom - Enter reg:// URLs or search keywords</p>
-                </div>
+            <section class="intro">
+                <h2>Navigate the Vibrational States of The Loom</h2>
+                <p>The Registrar is your access point to the interconnected networks spanning the multiverse. Search for regsites, access Concord databases, or explore Scholasticae archives.</p>
+            </section>
+
+            <section class="search-section">
+                <h2>Enter Regsite Address</h2>
                 <div class="search-box">
-                    <input type="text" id="searchInput" placeholder="ENTER REG:// URL OR SEARCH TERMS...">
-                    <button id="searchBtn">INITIATE SEARCH</button>
+                    <input type="text" class="search-input" placeholder="reg://sitename.arc" id="search-input">
+                    <button class="search-button" onclick="navigateToSite()">Navigate</button>
                 </div>
-                <div class="search-suggestions">
-                    <p>Popular regsites: <span class="suggestion">reg://cadmia-archive.arc</span>, <span class="suggestion">reg://scholasticae.schol</span>, <span class="suggestion">reg://concord-directory.con</span></p>
-                </div>
-            </div>
+                <p class="examples">Examples: reg://scholasticae-archive.schol, reg://concord-directory.con, reg://house-thanatos.arc</p>
+            </section>
 
-            <div class="auth-container">
-                <h3>USER AUTHENTICATION</h3>
-                <div class="auth-box">
-                    <input type="text" id="userIdInput" placeholder="ENTER USER ID">
-                    <input type="password" id="passwordInput" placeholder="ENTER PASSWORD">
-                    <button id="authBtn">AUTHENTICATE</button>
+            <section class="featured">
+                <h2>Featured Regsites</h2>
+                <div class="regsite-grid">
+                    <div class="regsite-card">
+                        <span class="regsite-url">reg://scholasticae-public.schol</span>
+                        <h3>Scholasticae Public Access</h3>
+                        <p class="regsite-desc">Open knowledge repository with public research on vibrational states, Cd-122 properties, and multiversal theory.</p>
+                    </div>
+                    
+                    <div class="regsite-card">
+                        <span class="regsite-url">reg://concord-public.con</span>
+                        <h3>Concord Public Information</h3>
+                        <p class="regsite-desc">Official Stellar Concord communications, public service announcements, and regulated travel information.</p>
+                    </div>
+                    
+                    <div class="regsite-card">
+                        <span class="regsite-url">reg://anchor-status.con</span>
+                        <h3>Anchor Status Network</h3>
+                        <p class="regsite-desc">Real-time monitoring of Reality Anchor stability across Concord-protected vibrational states. (Access restricted)</p>
+                    </div>
                 </div>
-                <button id="logoutBtn" class="hidden">LOGOUT</button>
-                <p id="authStatus">Status: Not authenticated</p>
-            </div>
+            </section>
 
-            <div id="resultsContainer" class="results-container hidden">
-                <div class="results-header">
-                    <h3>SEARCH RESULTS</h3>
-                    <p id="resultsCount">0 regsites found</p>
+            <section class="info-section">
+                <div class="info-card">
+                    <h3>About The Registrar</h3>
+                    <p>The Registrar is the primary information network serving the stabilized vibrational states of The Loom. Initially developed by the Stellar Concord for official communications, it has expanded to include academic, commercial, and personal regsites.</p>
                 </div>
-                <div id="resultsList" class="results-list">
-                    <!-- Results will be inserted here by JavaScript -->
+                
+                <div class="info-card">
+                    <h3>Access Levels</h3>
+                    <p>Many regsites require specific access credentials. Concord personnel, registered Mage Houses, Scholasticae members, and approved civilians have varying levels of access to restricted materials.</p>
                 </div>
-            </div>
-
-            <div id="welcomeMessage" class="welcome-message">
-                <h3>WELCOME TO THE REGISTRAR</h3>
-                <p>The Registrar is your gateway to regsites across The Loom's multidimensional network.</p>
-                <p>Search for regsites by keywords or enter a specific reg:// URL to navigate directly.</p>
-                <div class="system-status">
-                    <h4>NETWORK STATUS</h4>
-                    <ul>
-                        <li>Multiversal Connectivity: STABLE</li>
-                        <li>Regsite Index: <span id="regsiteCount">14,772,891</span> ACTIVE</li>
-                        <li>Network Latency: <span id="networkLatency">12.7</span>ms DIMENSIONAL PHASE</li>
-                    </ul>
+                
+                <div class="info-card">
+                    <h3>Network Security</h3>
+                    <p>All Registrar traffic is monitored by Concord Arbiters for vibrational contamination. Attempting to access restricted materials without proper authorization may result in permanent network access revocation.</p>
                 </div>
-            </div>
+            </section>
         </main>
 
         <footer>
-            <p>Operated by The Scholasticae | Multiversal Date: 817.45.19</p>
-            <p>Unauthorized access is prohibited under Concord Law</p>
+            <p>⚡ The Registrar Network • A Stellar Concord Regulated System • PV-817 Standard Frequency</p>
+            <p>Background Vibrational Noise: 0.0732 Δv • Last Singularization Event: 14.52 cycles ago</p>
         </footer>
     </div>
 
-    <script src="assets/js/data.js"></script>
-    <script src="script.js"></script>
+    <script>
+        // Function to handle navigation
+        function navigateToSite() {
+            const input = document.getElementById('search-input').value.trim();
+            
+            if (!input) {
+                alert('Please enter a regsite address');
+                return;
+            }
+            
+            // Check if it's a valid reg:// URL
+            if (!input.startsWith('reg://')) {
+                alert('Regsite addresses must start with reg://');
+                return;
+            }
+            
+            // Extract the site name and extension
+            const sitePath = input.replace('reg://', '');
+            const parts = sitePath.split('.');
+            
+            if (parts.length < 2) {
+                alert('Invalid regsite address format. Should be reg://sitename.extension');
+                return;
+            }
+            
+            const siteName = parts[0];
+            const extension = parts[1];
+            
+            // Map extensions to folder names
+            const extensionMap = {
+                'con': 'concord',
+                'schol': 'scholasticae',
+                'arc': 'archive'
+            };
+            
+            const folder = extensionMap[extension] || 'other';
+            
+            // In a real implementation, this would redirect to the actual page
+            alert(`Navigating to: ${input}\n\nThis would redirect to /regsites/${folder}/${siteName}/`);
+            
+            // For demonstration purposes, we're just showing an alert
+            // In your actual implementation, you would use:
+            // window.location.href = `/regsites/${folder}/${siteName}/`;
+        }
+        
+        // Allow Enter key to trigger navigation
+        document.getElementById('search-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                navigateToSite();
+            }
+        });
+        
+        // Add some interactive effects
+        document.querySelectorAll('.regsite-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+                this.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.2)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = '';
+                this.style.boxShadow = '';
+            });
+        });
+    </script>
 </body>
 </html>
