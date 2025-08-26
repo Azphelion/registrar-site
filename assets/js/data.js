@@ -120,6 +120,14 @@ const regsites = [
         access: ["arbiter_valerius", "echoed_malachi"]
     },
     {
+        id: "scholasticae-archive",
+        name: "Scholasticae Archive",
+        url: "reg://scholasticae-archive.schol",
+        realUrl: "/regsites/scholasticae-archive/",
+        keywords: ["scholasticae", "archive", "research", "knowledge", "academic", "papers", "documents"],
+        access: ["scholar_eliza"] // Only scholar_eliza has direct access
+    },
+    {
         id: "scholasticae-public",
         name: "Scholasticae Public Access",
         url: "reg://scholasticae-public.schol",
