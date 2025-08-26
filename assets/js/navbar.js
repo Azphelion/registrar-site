@@ -1,181 +1,300 @@
-// Function to generate the navigation bar
-function generateNavbar() {
-    const currentUser = getCurrentUser();
-    const navbarHtml = `
-        <nav class="registrar-navbar">
-            <div class="nav-brand">
-                <span class="registrar-logo">Registrar</span>
-                <span class="nav-subtitle">Accessing The Loom</span>
-            </div>
-            
-            <div class="nav-search">
-                <input type="text" id="regsearch" placeholder="Enter reg:// address or search keywords">
-                <button onclick="performSearch()">Navigate</button>
-            </div>
-            
-            <div class="nav-user">
-                ${currentUser ? `
-                    <span class="user-info">Logged in as <strong>${currentUser.fullName}</strong> (${currentUser.affiliation})</span>
-                    <button onclick="logout()">Logout</button>
-                ` : `
-                    <button onclick="showLoginForm()">Guest Login</button>
-                `}
-            </div>
-        </nav>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Registrar Network</title>
+    <style>
+        :root {
+            --primary-bg: #0a0a1a;
+            --secondary-bg: #1a1a3a;
+            --accent-blue: #6be8ff;
+            --accent-purple: #8a4aca;
+            --text-primary: #e0e0ff;
+            --text-secondary: #a0a0cc;
+            --border-color: #2a2a4a;
+        }
         
-        <div id="login-modal" class="modal" style="display:none;">
-            <div class="modal-content">
-                <span class="close" onclick="closeLoginForm()">&times;</span>
-                <h2>Registrar Authentication</h2>
-                <form onsubmit="handleLogin(event)">
-                    <div class="form-group">
-                        <label for="username">User ID:</label>
-                        <input type="text" id="username" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Access Code:</label>
-                        <input type="password" id="password" required>
-                    </div>
-                    <button type="submit">Authenticate</button>
-                </form>
-                <p class="guest-notice">Or <a href="#" onclick="continueAsGuest()">continue as guest</a> with limited access.</p>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Exo 2', sans-serif;
+            background: linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        .registrar-navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: rgba(10, 15, 30, 0.9);
+            border-bottom: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-purple) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 10px rgba(107, 232, 255, 0.5);
+        }
+        
+        .logo-inner {
+            width: 20px;
+            height: 20px;
+            background: var(--primary-bg);
+            border-radius: 50%;
+        }
+        
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .registrar-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent-blue);
+            text-shadow: 0 0 5px rgba(107, 232, 255, 0.7);
+        }
+        
+        .nav-subtitle {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+        
+        .nav-link {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            background: rgba(107, 232, 255, 0.1);
+            color: var(--accent-blue);
+        }
+        
+        .nav-search {
+            display: flex;
+            align-items: center;
+            background: rgba(20, 25, 45, 0.8);
+            border-radius: 25px;
+            padding: 5px 15px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .nav-search input {
+            background: transparent;
+            border: none;
+            color: var(--text-primary);
+            padding: 8px 12px;
+            width: 250px;
+            font-family: 'Exo 2', sans-serif;
+        }
+        
+        .nav-search input:focus {
+            outline: none;
+        }
+        
+        .nav-search button {
+            background: transparent;
+            border: none;
+            color: var(--accent-blue);
+            cursor: pointer;
+            padding: 5px;
+        }
+        
+        .nav-user {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .user-info {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        
+        .login-btn, .logout-btn {
+            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-purple) 100%);
+            border: none;
+            border-radius: 20px;
+            padding: 8px 20px;
+            color: var(--primary-bg);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .login-btn:hover, .logout-btn:hover {
+            box-shadow: 0 0 10px rgba(107, 232, 255, 0.7);
+            transform: translateY(-2px);
+        }
+        
+        .featured-link {
+            background: rgba(138, 74, 202, 0.2);
+            border: 1px solid var(--accent-purple);
+        }
+        
+        .featured-link:hover {
+            background: rgba(138, 74, 202, 0.4);
+            color: #e0e0ff;
+        }
+        
+        /* Mobile responsiveness */
+        @media (max-width: 1024px) {
+            .nav-search input {
+                width: 180px;
+            }
+            
+            .nav-links {
+                gap: 15px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .registrar-navbar {
+                flex-wrap: wrap;
+                padding: 1rem;
+            }
+            
+            .nav-brand {
+                margin-bottom: 10px;
+            }
+            
+            .nav-search {
+                order: 3;
+                width: 100%;
+                margin-top: 10px;
+            }
+            
+            .nav-search input {
+                width: 100%;
+            }
+            
+            .nav-links {
+                order: 2;
+                gap: 10px;
+            }
+            
+            .nav-user {
+                order: 1;
+                margin-left: auto;
+            }
+            
+            .user-info {
+                display: none;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="registrar-navbar">
+        <div class="nav-brand">
+            <div class="logo">
+                <div class="logo-inner"></div>
+            </div>
+            <div class="brand-text">
+                <span class="registrar-logo">Registrar</span>
+                <span class="nav-subtitle">NV-432 Standard Frequency</span>
             </div>
         </div>
         
-        <div id="search-results" class="search-results" style="display:none;"></div>
-    `;
-    
-    // Inject the navbar into the placeholder
-    const navContainer = document.getElementById('nav-container');
-    if (navContainer) {
-        navContainer.innerHTML = navbarHtml;
-    }
-}
-
-// Function to get current user from localStorage
-function getCurrentUser() {
-    const userData = localStorage.getItem('registrar_current_user');
-    return userData ? JSON.parse(userData) : null;
-}
-
-// Function to show login form
-function showLoginForm() {
-    document.getElementById('login-modal').style.display = 'block';
-}
-
-// Function to close login form
-function closeLoginForm() {
-    document.getElementById('login-modal').style.display = 'none';
-}
-
-// Function to handle login
-function handleLogin(event) {
-    event.preventDefault();
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
-    
-    const user = users.find(u => u.username === username && u.password === password);
-    
-    if (user) {
-        // Store user data without password for security
-        const { password, ...userWithoutPassword } = user;
-        localStorage.setItem('registrar_current_user', JSON.stringify(userWithoutPassword));
-        closeLoginForm();
-        generateNavbar(); // Refresh navbar to show user info
-        alert(`Authentication successful. Welcome, ${user.fullName}.`);
-    } else {
-        alert('Authentication failed. Invalid credentials.');
-    }
-}
-
-// Function to continue as guest
-function continueAsGuest() {
-    localStorage.removeItem('registrar_current_user');
-    closeLoginForm();
-    generateNavbar(); // Refresh navbar
-    alert('Continuing as guest. Access to private regsites is restricted.');
-}
-
-// Function to logout
-function logout() {
-    localStorage.removeItem('registrar_current_user');
-    generateNavbar(); // Refresh navbar
-    alert('Logged out successfully.');
-}
-
-// Function to perform search
-function performSearch() {
-    const query = document.getElementById('regsearch').value.trim();
-    const currentUser = getCurrentUser();
-    const username = currentUser ? currentUser.username : null;
-    
-    // Clear previous results
-    const resultsContainer = document.getElementById('search-results');
-    resultsContainer.innerHTML = '';
-    resultsContainer.style.display = 'none';
-    
-    if (!query) return;
-    
-    // Check if it's a direct reg:// URL
-    if (query.startsWith('reg://')) {
-        const regsiteName = query.replace('reg://', '').split('/')[0];
-        const regsite = regsites.find(r => r.url === `reg://${regsiteName}`);
+        <div class="nav-links">
+            <a href="https://azphelion.github.io/registrar-site/" class="nav-link">Home</a>
+            <a href="#" class="nav-link">Concord Network</a>
+            <a href="#" class="nav-link">V-State Index</a>
+            <a href="/regsites/scholasticae-archive/" class="nav-link featured-link">Scholasticae Archive</a>
+        </div>
         
-        if (regsite && hasAccessToRegsite(regsite, username)) {
-            window.location.href = regsite.realUrl;
-        } else if (regsite) {
-            alert('Access denied. You do not have permission to view this regsite.');
-        } else {
-            alert('Regsite not found. Please check the address and try again.');
-        }
-        return;
-    }
-    
-    // Otherwise perform keyword search
-    const results = regsites.filter(regsite => {
-        // Check if user has access
-        if (!hasAccessToRegsite(regsite, username)) return false;
+        <div class="nav-search">
+            <input type="text" placeholder="Enter reg:// address or keywords">
+            <button>Search</button>
+        </div>
         
-        // Check if query matches any keywords
-        return regsite.keywords.some(keyword => 
-            keyword.toLowerCase().includes(query.toLowerCase())
-        );
-    });
-    
-    if (results.length > 0) {
-        resultsContainer.innerHTML = `
-            <h3>Search Results for "${query}"</h3>
-            <ul>
-                ${results.map(regsite => `
-                    <li>
-                        <a href="${regsite.realUrl}" class="regsite-link">
-                            <span class="regsite-url">${regsite.url}</span>
-                            <span class="regsite-name">${regsite.name}</span>
-                        </a>
-                    </li>
-                `).join('')}
-            </ul>
-        `;
-        resultsContainer.style.display = 'block';
-    } else {
-        resultsContainer.innerHTML = '<p>No regsites found matching your query.</p>';
-        resultsContainer.style.display = 'block';
-    }
-}
+        <div class="nav-user">
+            <span class="user-info">Guest User</span>
+            <button class="login-btn">Login</button>
+        </div>
+    </nav>
 
-// Function to check if a user has access to a regsite
-function hasAccessToRegsite(regsite, username) {
-    // Public regsites have empty access array
-    if (regsite.access.length === 0) return true;
-    
-    // If no user is logged in, they can't access private regsites
-    if (!username) return false;
-    
-    // Check if the user has access
-    return regsite.access.includes(username);
-}
-
-// Initialize navbar when page loads
-document.addEventListener('DOMContentLoaded', function() {
-    generateNavbar();
-});
+    <script>
+        // This would be replaced with your actual navbar.js functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if user is logged in
+            const userData = localStorage.getItem('registrar_current_user');
+            if (userData) {
+                const user = JSON.parse(userData);
+                document.querySelector('.user-info').textContent = user.fullName;
+                document.querySelector('.login-btn').textContent = 'Logout';
+                document.querySelector('.login-btn').classList.add('logout-btn');
+                document.querySelector('.login-btn').classList.remove('login-btn');
+            }
+            
+            // Add login/logout functionality
+            document.querySelector('.login-btn, .logout-btn').addEventListener('click', function() {
+                if (this.textContent === 'Login') {
+                    // Show login modal
+                    alert('Login modal would appear here');
+                } else {
+                    // Logout
+                    localStorage.removeItem('registrar_current_user');
+                    document.querySelector('.user-info').textContent = 'Guest User';
+                    this.textContent = 'Login';
+                    this.classList.add('login-btn');
+                    this.classList.remove('logout-btn');
+                    alert('Logged out successfully');
+                }
+            });
+            
+            // Add search functionality
+            document.querySelector('.nav-search button').addEventListener('click', function() {
+                const query = document.querySelector('.nav-search input').value;
+                if (query) {
+                    if (query.startsWith('reg://')) {
+                        window.location.href = query.replace('reg://', '');
+                    } else {
+                        alert(`Searching for: ${query}`);
+                    }
+                }
+            });
+            
+            document.querySelector('.nav-search input').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    document.querySelector('.nav-search button').click();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
