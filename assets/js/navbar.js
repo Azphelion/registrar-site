@@ -1,161 +1,181 @@
-// Navigation bar functionality for all regsites
-document.addEventListener('DOMContentLoaded', function() {
-    // Create navigation bar
-    const navContainer = document.getElementById('nav-container');
+// Function to generate the navigation bar
+function generateNavbar() {
+    const currentUser = getCurrentUser();
+    const navbarHtml = `
+        <nav class="registrar-navbar">
+            <div class="nav-brand">
+                <span class="registrar-logo">Registrar</span>
+                <span class="nav-subtitle">Accessing The Loom</span>
+            </div>
+            
+            <div class="nav-search">
+                <input type="text" id="regsearch" placeholder="Enter reg:// address or search keywords">
+                <button onclick="performSearch()">Navigate</button>
+            </div>
+            
+            <div class="nav-user">
+                ${currentUser ? `
+                    <span class="user-info">Logged in as <strong>${currentUser.fullName}</strong> (${currentUser.affiliation})</span>
+                    <button onclick="logout()">Logout</button>
+                ` : `
+                    <button onclick="showLoginForm()">Guest Login</button>
+                `}
+            </div>
+        </nav>
+        
+        <div id="login-modal" class="modal" style="display:none;">
+            <div class="modal-content">
+                <span class="close" onclick="closeLoginForm()">&times;</span>
+                <h2>Registrar Authentication</h2>
+                <form onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label for="username">User ID:</label>
+                        <input type="text" id="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Access Code:</label>
+                        <input type="password" id="password" required>
+                    </div>
+                    <button type="submit">Authenticate</button>
+                </form>
+                <p class="guest-notice">Or <a href="#" onclick="continueAsGuest()">continue as guest</a> with limited access.</p>
+            </div>
+        </div>
+        
+        <div id="search-results" class="search-results" style="display:none;"></div>
+    `;
     
+    // Inject the navbar into the placeholder
+    const navContainer = document.getElementById('nav-container');
     if (navContainer) {
-        navContainer.innerHTML = `
-            <nav class="registrar-nav">
-                <div class="nav-logo">
-                    <a href="/cadmia-site/" class="nav-home">THE REGISTRAR</a>
-                </div>
-                <div class="nav-search">
-                    <input type="text" id="nav-search-input" placeholder="Search regsites...">
-                    <button id="nav-search-btn">Search</button>
-                </div>
-                <div class="nav-user">
-                    <span id="nav-user-status">Guest</span>
-                    <button id="nav-auth-btn">Login</button>
-                </div>
-            </nav>
-        `;
-        
-        // Add styles
-        const style = document.createElement('style');
-        style.textContent = `
-            .registrar-nav {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                padding: 15px 20px;
-                background: rgba(5, 10, 30, 0.95);
-                border-bottom: 1px solid rgba(80, 100, 220, 0.4);
-                backdrop-filter: blur(8px);
-                position: sticky;
-                top: 0;
-                z-index: 1000;
-            }
-            
-            .nav-logo a {
-                font-family: 'Orbitron', sans-serif;
-                font-weight: 700;
-                color: #6c5ce7;
-                text-decoration: none;
-                font-size: 1.2rem;
-                text-shadow: 0 0 10px rgba(108, 92, 231, 0.5);
-            }
-            
-            .nav-search {
-                display: flex;
-                flex: 1;
-                max-width: 400px;
-                margin: 0 20px;
-            }
-            
-            #nav-search-input {
-                flex: 1;
-                padding: 8px 12px;
-                background: rgba(2, 5, 20, 0.9);
-                border: 1px solid rgba(80, 100, 220, 0.4);
-                border-right: none;
-                border-radius: 4px 0 0 4px;
-                color: #e0e0ff;
-                font-family: 'Space Grotesk', sans-serif;
-            }
-            
-            #nav-search-btn {
-                padding: 8px 15px;
-                background: linear-gradient(135deg, #6c5ce7 0%, #4a3fb9 100%);
-                border: none;
-                border-radius: 0 4px 4px 0;
-                color: white;
-                font-family: 'Space Grotesk', sans-serif;
-                cursor: pointer;
-            }
-            
-            #nav-search-btn:hover {
-                background: linear-gradient(135deg, #7986ff 0%, #5c6ce7 100%);
-            }
-            
-            .nav-user {
-                display: flex;
-                align-items: center;
-                gap: 10px;
-            }
-            
-            #nav-user-status {
-                color: #00ffcc;
-                font-size: 0.9rem;
-            }
-            
-            #nav-auth-btn {
-                padding: 6px 12px;
-                background: rgba(255, 153, 102, 0.2);
-                border: 1px solid rgba(255, 153, 102, 0.5);
-                border-radius: 4px;
-                color: #ff9966;
-                font-family: 'Space Grotesk', sans-serif;
-                cursor: pointer;
-            }
-            
-            #nav-auth-btn:hover {
-                background: rgba(255, 153, 102, 0.3);
-            }
-            
-            @media (max-width: 768px) {
-                .registrar-nav {
-                    flex-direction: column;
-                    gap: 10px;
-                }
-                
-                .nav-search {
-                    max-width: 100%;
-                    margin: 10px 0;
-                }
-            }
-        `;
-        document.head.appendChild(style);
-        
-        // Add functionality
-        const navSearchInput = document.getElementById('nav-search-input');
-        const navSearchBtn = document.getElementById('nav-search-btn');
-        const navUserStatus = document.getElementById('nav-user-status');
-        const navAuthBtn = document.getElementById('nav-auth-btn');
-        
-        // Check if user is logged in
-        const savedUser = localStorage.getItem('registrarUser');
-        if (savedUser) {
-            const userData = JSON.parse(savedUser);
-            if (userDatabase[userData.id] && userDatabase[userData.id].password === userData.password) {
-                navUserStatus.textContent = userDatabase[userData.id].name;
-                navAuthBtn.textContent = "Logout";
-            }
-        }
-        
-        // Search functionality
-        navSearchBtn.addEventListener('click', function() {
-            if (navSearchInput.value.trim() !== '') {
-                window.location.href = `/cadmia-site/?search=${encodeURIComponent(navSearchInput.value.trim())}`;
-            }
-        });
-        
-        navSearchInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter' && navSearchInput.value.trim() !== '') {
-                window.location.href = `/cadmia-site/?search=${encodeURIComponent(navSearchInput.value.trim())}`;
-            }
-        });
-        
-        // Auth functionality
-        navAuthBtn.addEventListener('click', function() {
-            if (navAuthBtn.textContent === "Login") {
-                window.location.href = "/cadmia-site/";
-            } else {
-                localStorage.removeItem('registrarUser');
-                navUserStatus.textContent = "Guest";
-                navAuthBtn.textContent = "Login";
-                // Reload to reflect logout state
-                window.location.reload();
-            }
-        });
+        navContainer.innerHTML = navbarHtml;
     }
+}
+
+// Function to get current user from localStorage
+function getCurrentUser() {
+    const userData = localStorage.getItem('registrar_current_user');
+    return userData ? JSON.parse(userData) : null;
+}
+
+// Function to show login form
+function showLoginForm() {
+    document.getElementById('login-modal').style.display = 'block';
+}
+
+// Function to close login form
+function closeLoginForm() {
+    document.getElementById('login-modal').style.display = 'none';
+}
+
+// Function to handle login
+function handleLogin(event) {
+    event.preventDefault();
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    
+    const user = users.find(u => u.username === username && u.password === password);
+    
+    if (user) {
+        // Store user data without password for security
+        const { password, ...userWithoutPassword } = user;
+        localStorage.setItem('registrar_current_user', JSON.stringify(userWithoutPassword));
+        closeLoginForm();
+        generateNavbar(); // Refresh navbar to show user info
+        alert(`Authentication successful. Welcome, ${user.fullName}.`);
+    } else {
+        alert('Authentication failed. Invalid credentials.');
+    }
+}
+
+// Function to continue as guest
+function continueAsGuest() {
+    localStorage.removeItem('registrar_current_user');
+    closeLoginForm();
+    generateNavbar(); // Refresh navbar
+    alert('Continuing as guest. Access to private regsites is restricted.');
+}
+
+// Function to logout
+function logout() {
+    localStorage.removeItem('registrar_current_user');
+    generateNavbar(); // Refresh navbar
+    alert('Logged out successfully.');
+}
+
+// Function to perform search
+function performSearch() {
+    const query = document.getElementById('regsearch').value.trim();
+    const currentUser = getCurrentUser();
+    const username = currentUser ? currentUser.username : null;
+    
+    // Clear previous results
+    const resultsContainer = document.getElementById('search-results');
+    resultsContainer.innerHTML = '';
+    resultsContainer.style.display = 'none';
+    
+    if (!query) return;
+    
+    // Check if it's a direct reg:// URL
+    if (query.startsWith('reg://')) {
+        const regsiteName = query.replace('reg://', '').split('/')[0];
+        const regsite = regsites.find(r => r.url === `reg://${regsiteName}`);
+        
+        if (regsite && hasAccessToRegsite(regsite, username)) {
+            window.location.href = regsite.realUrl;
+        } else if (regsite) {
+            alert('Access denied. You do not have permission to view this regsite.');
+        } else {
+            alert('Regsite not found. Please check the address and try again.');
+        }
+        return;
+    }
+    
+    // Otherwise perform keyword search
+    const results = regsites.filter(regsite => {
+        // Check if user has access
+        if (!hasAccessToRegsite(regsite, username)) return false;
+        
+        // Check if query matches any keywords
+        return regsite.keywords.some(keyword => 
+            keyword.toLowerCase().includes(query.toLowerCase())
+        );
+    });
+    
+    if (results.length > 0) {
+        resultsContainer.innerHTML = `
+            <h3>Search Results for "${query}"</h3>
+            <ul>
+                ${results.map(regsite => `
+                    <li>
+                        <a href="${regsite.realUrl}" class="regsite-link">
+                            <span class="regsite-url">${regsite.url}</span>
+                            <span class="regsite-name">${regsite.name}</span>
+                        </a>
+                    </li>
+                `).join('')}
+            </ul>
+        `;
+        resultsContainer.style.display = 'block';
+    } else {
+        resultsContainer.innerHTML = '<p>No regsites found matching your query.</p>';
+        resultsContainer.style.display = 'block';
+    }
+}
+
+// Function to check if a user has access to a regsite
+function hasAccessToRegsite(regsite, username) {
+    // Public regsites have empty access array
+    if (regsite.access.length === 0) return true;
+    
+    // If no user is logged in, they can't access private regsites
+    if (!username) return false;
+    
+    // Check if the user has access
+    return regsite.access.includes(username);
+}
+
+// Initialize navbar when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    generateNavbar();
 });
