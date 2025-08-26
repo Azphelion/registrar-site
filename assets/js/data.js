@@ -1,91 +1,138 @@
-// User database with realistic passwords and individualized access
-const userDatabase = {
-    "GUEST": { 
-        name: "Guest", 
-        password: null 
+// User data with realistic credentials and access permissions
+const users = [
+    {
+        username: "arbiter_valerius",
+        password: "SentinelPrime#817",
+        fullName: "Valerius Corvin",
+        affiliation: "Concord Arbiters",
+        access: ["concord-directory", "sentinel-bulletin", "scholasticae-public", "anchor-status"]
     },
-    "RESEARCH-772": { 
-        name: "Dr. Aris Thorne", 
-        password: "quantumFlux7!",
-        access: [1, 2] // cadmia-archive, scholasticae
+    {
+        username: "magog_thanatos",
+        password: "NecroticWeave42",
+        fullName: "Magog of House Thanatos",
+        affiliation: "Resurgent Houses",
+        access: ["house-thanatos", "umbral-archive", "resonance-blackmarket", "scholasticae-public"]
     },
-    "ARBITER-553": { 
-        name: "Commander Valerius", 
-        password: "sentinelGuard_42",
-        access: [1, 3, 4] // cadmia-archive, concord-directory, ktharr-network
+    {
+        username: "ktharr_7gamma",
+        password: "HiveMind_Silicon",
+        fullName: "K'tharr Drone Unit 7-Gamma",
+        affiliation: "K'tharr Hegemony",
+        access: ["hegemony-frequency", "scholasticae-public", "xenobiology-index"]
     },
-    "SCHOLAR-009": { 
-        name: "Lira Vex", 
-        password: "primalTheorist@9",
-        access: [1, 2, 5] // cadmia-archive, scholasticae, deiarch-core
+    {
+        username: "scholar_eliza",
+        password: "KnowledgeSeeker122",
+        fullName: "Eliza Vance",
+        affiliation: "Scholasticae",
+        access: ["scholasticae-archive", "primal-studies", "vibrational-theory", "concord-public"]
     },
-    "TECH-330": { 
-        name: "Jax Corbin", 
-        password: "cd122_technician",
-        access: [1, 3] // cadmia-archive, concord-directory
-    },
-    "OBSERVER-101": { 
-        name: "Kaelen Rourke", 
-        password: "multiverseWatcher101",
-        access: [1, 2, 3] // cadmia-archive, scholasticae, concord-directory
-    },
-    "ADMIN-001": { 
-        name: "System Administrator", 
-        password: "rootAccess#777",
-        isSuperUser: true // Access to everything
+    {
+        username: "echoed_malachi",
+        password: "GoldenConformity01",
+        fullName: "Malachi",
+        affiliation: "Deiarch's Will",
+        access: ["deiarch-mandates", "reality-compliance", "primal-engine", "anchor-status"]
     }
-};
+];
 
-// Regsite database
-const regsiteDatabase = [
+// Regsite data with URLs, keywords, and access requirements
+const regsites = [
     {
-        id: 1,
-        title: "Cadmia Archives",
-        description: "The central repository of knowledge about The Loom, its vibrational states, and the factions navigating the multiverse.",
-        url: "reg://cadmia-archive.arc",
-        physicalPath: "regsites/cadmia-archive",
-        keywords: ["cadmia", "archive", "knowledge", "multiverse", "loom", "scholasticae"],
-        private: false,
-        allowedUsers: []
-    },
-    {
-        id: 2,
-        title: "Scholasticae Library",
-        description: "The official knowledge repository maintained by the Scholasticae, containing research on The Loom and vibrational theory.",
-        url: "reg://scholasticae.schol",
-        physicalPath: "regsites/scholasticae",
-        keywords: ["scholasticae", "library", "research", "knowledge", "vibrational theory"],
-        private: false,
-        allowedUsers: []
-    },
-    {
-        id: 3,
-        title: "Concord Directory",
-        description: "Official directory of the Stellar Concord, containing regulations, member systems, and public announcements.",
+        id: "concord-directory",
+        name: "Concord Directory",
         url: "reg://concord-directory.con",
-        physicalPath: "regsites/concord-directory",
-        keywords: ["concord", "directory", "regulations", "stellar", "government"],
-        private: false,
-        allowedUsers: []
+        realUrl: "/regsites/concord-directory/",
+        keywords: ["concord", "government", "laws", "directory", "bureaucracy"],
+        access: ["arbiter_valerius", "scholar_eliza"]
     },
     {
-        id: 4,
-        title: "K'tharr Network",
-        description: "Secure communication network for the K'tharr Hegemony. Access restricted to authorized personnel only.",
-        url: "reg://ktharr-network.kth",
-        physicalPath: "regsites/ktharr-network",
-        keywords: ["k'tharr", "hegemony", "network", "secure", "silicon-based"],
-        private: true,
-        allowedUsers: ["ARBITER-553", "ADMIN-001"]
+        id: "sentinel-bulletin",
+        name: "Sentinel Fleet Bulletin",
+        url: "reg://sentinel-bulletin.con",
+        realUrl: "/regsites/sentinel-bulletin/",
+        keywords: ["fleet", "military", "bulletin", "concord", "security"],
+        access: ["arbiter_valerius"]
     },
     {
-        id: 5,
-        title: "Deiarch Core",
-        description: "Primary access point to the Deiarch's consciousness. Extreme clearance required.",
-        url: "reg://deiarch-core.dai",
-        physicalPath: "regsites/deiarch-core",
-        keywords: ["deiarch", "core", "consciousness", "quantum computer", "primal engine"],
-        private: true,
-        allowedUsers: ["SCHOLAR-009", "ADMIN-001"]
+        id: "house-thanatos",
+        name: "House Thanatos Archives",
+        url: "reg://house-thanatos.arc",
+        realUrl: "/regsites/house-thanatos/",
+        keywords: ["thanatos", "necromancy", "house", "resurgent", "magic"],
+        access: ["magog_thanatos"]
+    },
+    {
+        id: "umbral-archive",
+        name: "Umbral Archive",
+        url: "reg://umbral-archive.arc",
+        realUrl: "/regsites/umbral-archive/",
+        keywords: ["umbral", "archive", "restricted", "occult", "forbidden"],
+        access: ["magog_thanatos", "scholar_eliza"]
+    },
+    {
+        id: "hegemony-frequency",
+        name: "Hegemony Frequency",
+        url: "reg://hegemony-frequency.con",
+        realUrl: "/regsites/hegemony-frequency/",
+        keywords: ["k'tharr", "hegemony", "silicon", "hive", "darwinian"],
+        access: ["ktharr_7gamma"]
+    },
+    {
+        id: "scholasticae-archive",
+        name: "Scholasticae Archive",
+        url: "reg://scholasticae-archive.schol",
+        realUrl: "/regsites/scholasticae-archive/",
+        keywords: ["scholasticae", "archive", "research", "knowledge", "academic"],
+        access: ["scholar_eliza"]
+    },
+    {
+        id: "primal-studies",
+        name: "Primal Studies",
+        url: "reg://primal-studies.schol",
+        realUrl: "/regsites/primal-studies/",
+        keywords: ["primal", "studies", "ancient", "origins", "mystery"],
+        access: ["scholar_eliza", "echoed_malachi"]
+    },
+    {
+        id: "deiarch-mandates",
+        name: "Deiarch Mandates",
+        url: "reg://deiarch-mandates.arc",
+        realUrl: "/regsites/deiarch-mandates/",
+        keywords: ["deiarch", "mandates", "will", "compliance", "singularization"],
+        access: ["echoed_malachi"]
+    },
+    {
+        id: "reality-compliance",
+        name: "Reality Compliance Database",
+        url: "reg://reality-compliance.arc",
+        realUrl: "/regsites/reality-compliance/",
+        keywords: ["reality", "compliance", "fields", "technology", "deiarch"],
+        access: ["echoed_malachi"]
+    },
+    {
+        id: "anchor-status",
+        name: "Anchor Status Network",
+        url: "reg://anchor-status.con",
+        realUrl: "/regsites/anchor-status/",
+        keywords: ["anchor", "status", "cd122", "resonance", "monitoring"],
+        access: ["arbiter_valerius", "echoed_malachi"]
+    },
+    {
+        id: "scholasticae-public",
+        name: "Scholasticae Public Access",
+        url: "reg://scholasticae-public.schol",
+        realUrl: "/regsites/scholasticae-public/",
+        keywords: ["scholasticae", "public", "library", "information", "knowledge"],
+        access: [] // Empty array means public access
+    },
+    {
+        id: "concord-public",
+        name: "Concord Public Information",
+        url: "reg://concord-public.con",
+        realUrl: "/regsites/concord-public/",
+        keywords: ["concord", "public", "information", "services", "government"],
+        access: [] // Public access
     }
 ];
